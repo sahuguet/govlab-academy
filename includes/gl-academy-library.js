@@ -18,6 +18,10 @@ function addContent(item) {
 	$('#container').append(gl_item);
 } // addContent()
 
+function updateCount() {
+  $('#item-count').html($container.data('isotope').$filteredAtoms.length + " item(s) selected.");
+}
+
 function processContent() {
 	$container.isotope({
   itemSelector : '.b-library-item',
@@ -25,7 +29,7 @@ function processContent() {
     columnWidth: 80
   }
 	});
-
+ updateCount(); 
 // filter buttons
 $('.filter a').click(function(){
   var $this = $(this);
@@ -50,7 +54,7 @@ $('.filter a').click(function(){
   }
   var selector = isoFilters.join('');
   $container.isotope({ filter: selector });
-
+  updateCount();
   return false;
 });
 };
