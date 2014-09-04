@@ -1,0 +1,49 @@
+application: govlabacademy
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+skip_files:
+- ^(.*/)?\.scss$
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+# static_dir does not accept regex grouping.
+- url: /css
+  static_dir: css
+
+- url: /includes
+  static_dir: includes
+
+- url: /assets
+  static_dir: assets
+
+- url: /scss
+  static_dir: scss
+
+- url: /((index|faq|library|gallery|courses)\.html)
+  static_files: static_site/\1
+  upload: static_site/.*
+
+- url: /library.json
+  static_files: library.json
+  upload: library.json
+
+- url: /allusers
+  script: account_services.app
+  login: required
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: latest
+- name: pycrypto
+  version: latest

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Set the viewport so this responsive site displays correctly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/icomoon/style.css"></head>
+    <link rel="stylesheet" href="scss/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="includes/modernizr.js"></script> <!-- Modernizr -->
+
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+
+<body>
+  <nav class="b-navigation" role="navigation">
+    <h2 class="e-nav-title">Menu</h2>
+    <a href="/">Home</a>
+    <a href="http://thegovlab.org">GovLab</a>
+    <a href="library">Library</a>
+    <a href="gallery">Project Gallery</a>
+    <a href="courses">Courses</a>
+    <a href="faq">FAQ</a>
+    <a href="mailto:info-academy@thegovlab.org">Contact Us</a>
+    {% if user %}
+    <a href="/"><img class="avatar" alt="{{user.name}} "src="{{userPicture|default('assets/silhouette200.png')}}"</a>
+    {% else %}
+    <a href="{{login_url}}">Sign-in</a>
+    {% endif %}
+  </nav>
+  
+  <div class="b-top-layer">
+    <header role="header">
+      <div class="b-centered">
+        <span id="main-navigation-trigger" class="e-trigger icon-menu"></span>
+        
+        <div class="b-branding">
+          <a href="#" class="b-govlab-logo"><img src="assets/govlab-logo.png" alt=""></a>
+          <span class="b-academy-logo"><img src="assets/academy-logo.png" alt=""></span>
+        </div>
+      </div>
+    </header>
+
+{% block content %}{% endblock %}
+
+    <footer>
+        <div class="b-centered">
+            <div class="b-footer-section">
+              <h3>
+                  <span class="glyphicon glyphicon-heart"></span>Learn More</h3>
+              <p>Content for the first footer section.</p>
+            </div>
+            <div class="b-footer-section">
+              <h3>
+                  <span class="glyphicon glyphicon-star"></span>Apply for the Academy</h3>
+              <p>Content for the second footer section.</p>
+            </div>
+            <div class="b-footer-section">
+              <h3>
+                  <span class="glyphicon glyphicon-music"></span>GovLab@NYU</h3>
+              <p>Content for the third footer section.</p>
+            </div>
+        </div>
+    </footer>
+  </div>
+
+    <!-- Include jQuery and bootstrap JS plugins -->
+    <script type="text/javascript" src="includes/jquery/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
+
+
+    <!-- ADD Google Analytics. 
+         ADD Feedback module. -->     
+
+    <!-- Claudio Local Development Scripts -->
+    <script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+    <script type="text/javascript" src="//use.typekit.net/ipr0jtq.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</body>
+
+</html>

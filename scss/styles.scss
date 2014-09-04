@@ -1,0 +1,37 @@
+$primary-color: rgba(240, 90, 40, 1);
+$secondary-color: #444;
+$gray_80: rgba(0,0,0,0.8);
+$gray_60: rgba(0,0,0,0.6);
+$gray_40: rgba(0,0,0,0.4);
+$gray_20: rgba(0,0,0,0.2);
+$gray_10: rgba(0,0,0,0.1);
+$white: white;
+$white_10: rgba(255, 255, 255, 0.1);
+$white_20: rgba(255, 255, 255, 0.2);
+$white_40: rgba(255, 255, 255, 0.4);
+$white_60: rgba(255, 255, 255, 0.6);
+$white_80: rgba(255, 255, 255, 0.8);
+
+$main-font: 'proxima-nova', 'Helvetica Neue', Healvetica, Arial, sans-serif;
+
+@mixin circle {
+	border-radius: 50%;
+}
+
+@mixin drop-shadow {
+	box-shadow: 1px 1px 8px $gray_10;
+}
+
+@mixin back-panel-shadow {
+	box-shadow: -3px 0px 18px $gray_60;
+}
+
+@mixin transition {
+	transition: all .5s ease-in-out;
+}
+
+@import "base";
+@import "mobile";
+@import "desktop";
+@import "dashboard";
+

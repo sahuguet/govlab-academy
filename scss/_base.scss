@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: $main-font;
+  font-size: 1.1rem;
+  font-weight: 200;
+  padding: 0;
+  color: $secondary-color;
+}
+
+body {
+  border-top: 3px solid $primary-color;
+}
+
+.b-centered {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+
+  &:hover {
+    text-decoration: underline;
+  } 
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 40px;
+  color: $secondary-color;
+}
+
+h2 {
+  font-weight: 600;
+  color: $primary-color;
+  font-size: 24px;
+}
+
+h2 {
+  font-weight: 600;
+  color: $gray_60;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+ul {
+  padding: 10px 0;
+}
+
+li {
+  padding: 3px 0;
+  margin-left: 14px;
+  position: relative;
+  list-style: none;
+  color: $gray_80;
+
+  &::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 6px solid $primary-color;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    position: absolute;
+    left: -14px;
+    top: 6px;
+  }
+}
+
+.b-quotes {
+  padding-bottom: 5px;
+  border-bottom: 1px solid $gray_10;
+
+  .e-quote {
+    font-style: italic; 
+    margin-bottom: 0;
+  }
+
+  .e-quote-author {
+    font-weight: 600;
+    color: $secondary-color;
+    display: block;
+    text-align: right;
+    margin-bottom: 5px;
+  }
+}
+
+.b-slider {
+  width: 100%;
+  overflow: hidden;
+
+  // .e-slider-strip {
+  //   width: 10000px;
+  // }
+
+  .e-slide {
+    float: left;
+    border: 1px solid $gray_20;
+    margin: 0 20px 20px 0;
+    border-top: 3px solid $primary-color;
+    padding-bottom: 15px;
+    @include drop-shadow;
+
+    h3, p {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+    
+}
+
+.b-content {
+  border-bottom: 1px solid $gray_20;
+  overflow:hidden;
+}
+
+.b-button {
+  background-color: $primary-color;
+  padding: 8px 20px;
+  font-weight: 600;
+  color: $white;
+
+  &:hover {
+    color: $white_80;
+  } 
+}
+
+footer {
+  background-color: $gray_80;
+  
+  .b-centered {
+    background-color: transparent;  
+  }
+
+  h3 {
+    color: $white_60;
+    font-weight: 400;
+  }
+
+  p {
+    color: $white;
+  }
+}

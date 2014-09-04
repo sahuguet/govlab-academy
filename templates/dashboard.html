@@ -1,0 +1,58 @@
+{% extends "templates/base.html" %}
+{% block title %}The GovLab Academy{% endblock %}
+
+{% block content %}
+
+<section class="b-centered b-dashboard-header">
+        <h1>Dashboard</h1>
+        <p class="e-username">Welcome {{user}}</p>
+    </section>
+
+    <section class="b-centered b-content">
+        <h1>Onboarding</h1>
+        <div class="b-half">
+          <div class="e-half-content">
+	          <iframe src="https://docs.google.com/a/thegovlab.org/presentation/d/1f5E--vE24Bz95umWj5cFGho5SPnyUSaf7_AsZd8HYxs/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+	        </div>
+       	</div>
+        <div class="b-half">
+        	<div class="e-half-content">
+	          <iframe src="https://docs.google.com/a/thegovlab.org/presentation/d/1f5E--vE24Bz95umWj5cFGho5SPnyUSaf7_AsZd8HYxs/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+	          <p>change this one; add the on-boarding video</p>
+        	</div>
+        </div>
+    </section>
+
+    <section class="b-centered b-content">
+      <div class="b-half">
+        <h1>Latest news</h1>
+        <div class="e-half-content">
+        	<iframe src="https://docs.google.com/a/thegovlab.org/document/d/1PVAkn_UUHhc1OgQ2bSFznZE-m54dT8UDPm8WzF3hLlI/pub?embedded=true&rm=minimal" frameborder="0" width="100%" height="400"></iframe>
+        </div>
+      </div>
+
+      <div class="b-half">
+          <h1>Class Calendar</h1>
+          <div class="e-half-content">
+          	<iframe src="https://www.google.com/calendar/embed?src=thegovlab.org_df4b1u1qj5ktbrso57s2ojkrsk%40group.calendar.google.com&ctz=America/New_York&showTitle=1" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+          </div>
+      </div>
+    </section>
+
+    <section class="b-centered b-content">
+      <div class="b-half">
+          <h1>My weekly snippet</h1>
+          <div class="e-half-content">
+          	<iframe src="https://govlab-dev.appspot.com/snippets/?embedded=true" height="400px" frameborder="0" width="100%"></iframe>
+          </div>
+          <p>A snippet is short piece of text where you write down what you did last week and what they plan to do in the upcoming weeks. This is for you to keep track of your progress; this is for others to see what you are up to. See here and here for more info about the origin of snippets.</p>
+
+      </div>
+      <div class="b-half">
+          <h1>My working documents</h1>
+          <div class="e-half-content">
+          	<iframe src="https://drive.google.com/embeddedfolderview?id=0B-BTzZGOWDTHc3ZNcWlKaUpSU00#list" width="100%" height="600px" frameborder="0"></iframe>
+          </div>
+      </div>
+    </section>
+{% endblock %}

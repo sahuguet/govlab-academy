@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>All Users</title>
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+</head>
+<body>
+	<h1>Overview of all our users</h1>
+
+	<h2>GovLab team</h2>
+		<ul>
+		{% for user in users %}
+    	<li>{{ user.name.fullName}}  <img class="avatar" alt="{{user.name.fullName}} "src="{{user.thumbnailPhotoUrl|default('img/silhouette200.png')}}"/></li>
+		{% endfor %}
+		</ul>
+
+		<h2>Alumni</h2>
+		<ul>
+		{% for user in alums %}
+    	<li>{{ user.name.fullName}}  <img class="avatar" alt="{{user.name.fullName}} "src="{{user.thumbnailPhotoUrl|default('img/silhouette200.png')}}"/></li>
+		{% endfor %}
+		</ul>
+
+	<h2>All groups</h2>
+		<ul>
+		{% for group in groups %}
+    	<li>{{ group.email }} <p>{{group.description}}</p></li>
+		{% endfor %}
+		</ul>
+
+	<h2>All members of group `academy`</h2>
+		<ul>
+		{% for member in members %}
+    	<li>{{ member }} </li>
+		{% endfor %}
+		</ul>
+
+</body>
+</html>

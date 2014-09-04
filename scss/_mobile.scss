@@ -1,0 +1,175 @@
+@media only screen and (max-width : 1023px) { //400px
+  body {
+
+  }
+
+  .b-top-layer {
+    position: relative;
+    left: 0;
+    @include transition;
+    @include back-panel-shadow;
+
+    &.m-active {
+      left: 60%;
+      @include transition;
+    }
+  }
+
+  .b-centered {
+    width: 394px / 400px * 100%;
+    padding: 0 5px;
+    background-color: $white;
+  }
+
+  .b-govlab-logo {
+    display: block;
+    padding: 10px 0 10px 10px;
+
+    img {
+      max-width: 40%; 
+    }
+  }
+  
+  .b-branding {
+    text-align: center;
+  }
+
+  .b-academy-logo {
+    width: 80px;
+    height: 80px;
+    margin: 10px 5px 0 0;
+    display: inline-block;
+    border: 3px solid $primary-color;
+    @include circle;
+    overflow: hidden;
+
+
+    img {
+      width: 70%;
+      position: relative;
+      top: 15%;
+    }
+  }
+
+  .b-navigation {
+    position: fixed;
+    z-index: -1;
+    background-color: $gray_80;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      color: $white_60;
+    }
+
+    a {
+      display: block;
+      color: $white;
+      padding: 18px 0;
+      border-top: 1px solid $white_20;
+      border-bottom: 1px solid $gray_10;
+      font-size: 22px;
+
+      &:first-of-type {
+        border-top: 0;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .e-trigger {
+    font-size: 30px;
+    color: $primary-color;
+    left: 10px;
+    top: 10px;
+    position: absolute;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: $primary-color;
+    letter-spacing: .6px;
+    margin-top: 20px;
+    // border-top: 1px solid $gray_20;
+  }
+
+  h2 {
+    font-size: 18px;
+    color: $gray_80;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: $gray_60;
+  }
+
+  .b-button {
+    display: block;
+    width: 345px / 400px * 100%;
+    text-align: center;
+  }
+
+  .b-quotes {
+    margin: 10px 20px 0 20px;
+    border-bottom: 1px solid $gray_10;
+
+    .e-quote-author {
+      display: block;
+      text-align: right;
+      margin-bottom: 5px;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+}
+
+.b-resources {
+  h2 {
+    margin: 30px 0 0;
+  }
+
+  ul {
+    margin-top: 0;
+  }
+}
+
+footer {
+  padding: 10px;
+
+  h3 {
+    font-weight: 400;
+    margin: 5px 0;
+  }
+
+  p {
+    margin-top: 0;
+  }
+
+  .b-footer-section {
+    border-bottom: 1px solid $white_10;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.b-slider {
+  .e-slide {
+    width: 312px / 320px * 100%;
+  }
+}
+
+} // End of media query
+
+//https://github.com/thebird/Swipe

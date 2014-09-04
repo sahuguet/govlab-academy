@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>Adding users</title>
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+</head>
+<body>
+	<h1>Adding users</h1>
+	<p>Use the following format: first name, last name, login, affiliation (e.g. MIT, NYU, etc.)
+	<form action="/addUser" method="POST">
+		<textarea cols="80" rows="20" name="users"># add your users here.
+# first name, last name, affiliation, team</textarea>
+		<br/>
+		<input type="submit" value="Add users"/>
+	</form>
+</body>
+</html>
