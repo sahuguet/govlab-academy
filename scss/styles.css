@@ -9,6 +9,9 @@ body {
 body {
   border-top: 3px solid #f05a28; }
 
+.b-top-layer {
+  background-color: white; }
+
 .b-centered {
   max-width: 960px;
   margin: 0 auto; }
@@ -108,6 +111,7 @@ footer {
   .b-top-layer {
     position: relative;
     left: 0;
+    background-color: white;
     transition: all .5s ease-in-out;
     box-shadow: -3px 0px 18px rgba(0, 0, 0, 0.6); }
     .b-top-layer.m-active {
@@ -332,4 +336,64 @@ footer {
   margin-top: 0; }
 #dashboard .b-content {
   padding-bottom: 20px;
-  margin-bottom: 30px; }
+  padding-top: 30px; }
+
+#library .b-filters .e-filter {
+  padding: 5px 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer; }
+  #library .b-filters .e-filter:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.8); }
+#library .b-filters .m-doc {
+  border-left-color: #f05a28; }
+  #library .b-filters .m-doc:hover {
+    background-color: #f05a28; }
+#library .b-filters .m-video {
+  border-left-color: #288218; }
+  #library .b-filters .m-video:hover {
+    background-color: #288218; }
+#library .b-filters .m-people {
+  border-left-color: #0d48a9; }
+  #library .b-filters .m-people:hover {
+    background-color: #0d48a9; }
+#library .b-filters .e-filter-list {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+  #library .b-filters .e-filter-list li {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 4px;
+    display: inline-block; }
+    #library .b-filters .e-filter-list li::before {
+      display: none; }
+  #library .b-filters .e-filter-list:last-child {
+    border-right: 0; }
+#library .b-library-item {
+  float: left;
+  width: 281px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 3px solid #f05a28;
+  padding: 15px;
+  margin: 0 10px 10px 0;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1); }
+  #library .b-library-item:nth-child(3n) {
+    margin-right: 0; }
+  #library .b-library-item h3 {
+    margin-top: 0; }
+  #library .b-library-item .e-biblio {
+    font-size: .8rem; }
+  #library .b-library-item .e-library-action {
+    padding: 5px 8px;
+    background-color: #f05a28;
+    color: white; }
+    #library .b-library-item .e-library-action:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      text-decoration: none; }
+  #library .b-library-item.m-doc {
+    border-top-color: #f05a28; }
+  #library .b-library-item.m-video {
+    border-top-color: #288218; }
+  #library .b-library-item.m-people {
+    border-top-color: #0d48a9; }
