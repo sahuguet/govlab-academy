@@ -1,5 +1,5 @@
 application: govlabacademy
-version: 1
+version: 1-dev
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -35,6 +35,10 @@ handlers:
 
 - url: /allusers
   script: account_services.app
+  login: required
+
+- url: /profile
+  script: main.app
   login: required
 
 - url: .*

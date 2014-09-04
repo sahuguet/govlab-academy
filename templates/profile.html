@@ -1,0 +1,119 @@
+{% extends "templates/base.html" %}
+{% block title %}The GovLab Academy{% endblock %}
+{% block extras_pre %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="b-centered b-content">
+	<h1>My public profile</h1>
+
+<form>
+  <label for="name">Name</label>
+    <div class="row form-group">
+        <div class="col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" placeholder="First Name">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="Last Name">
+            </div>
+        </div>
+    </div>
+
+    <label for="name">Location</label>
+        <div class="row form-group">
+        <div class="col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <input type="text" class="form-control" placeholder="City, State">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-flag"></i></span></span>
+            <input type="text" class="form-control" placeholder="Country">
+            </div>
+        </div>
+    </div>
+
+    <label for="name">Social networks</label>
+    <div class="row form-group">
+        <div class="col-xs-4">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+                <input type="text" class="form-control" placeholder="your facebook account">
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
+            <input type="text" class="form-control" placeholder="your Twitter handle">
+            </div>
+        </div>
+            <div class="col-xs-4">
+            <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-github"></i></span>
+            <input type="text" class="form-control" placeholder="your GitHub account">
+            </div>
+        </div>
+    </div>
+
+<label for="name">Experience</label>
+        <div class="row form-group">
+        <div class="col-xs-3">
+            <div class="input-group">
+              <select class="form-control">
+               <option>1 year</option>
+         <option>2 years</option>
+         <option>3 years</option>
+         <option>4 years</option>
+         <option>5+ years</option>
+        </select>       
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="input-group">
+            <select class="form-control">
+               <option>Academia</option>
+               <option>Industry</option>
+               <option>Public Sector</option>
+               <option>Entrepreneur</option>
+        </select>       
+            </div>
+            </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+            <textarea class="form-control" cols="80" rows="8" placeholder="Tell us about your Experience"></textarea>
+        </div>
+    </div>
+  </div>
+
+  <label for="name">Skill "marketplace"</label>
+        <div class="row form-group">
+        <div class="col-xs-6">
+            <div class="input-group">
+               <textarea class="form-control" cols="80" rows="8" placeholder="What help you can offer"></textarea>     
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+               <textarea class="form-control" cols="80" rows="8" placeholder="What help you are looking for"></textarea>     
+            </div>
+        </div>
+    </div>
+
+<div class="row form-group col-xs-offset-5 col-xs-2">
+            <button type="submit" class="btn btn-primary">Update my profile</button>
+        </div>
+
+</form>
+
+    </section>
+
+{% endblock %}

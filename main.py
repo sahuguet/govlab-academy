@@ -61,7 +61,7 @@ class MainHandler(webapp2.RequestHandler):
 				template_page = 'academy'
 		page_template = JINJA_ENVIRONMENT.get_template('templates/%s.html' % template_page)
 		user_profile = None
-		if template_page == 'dashboard' and  user:
+		if user:
 			logging.info("Fetching profile for %s." % user)
 			user_profile = account_services.getPicture(user.email())
 			logging.info(user_profile)
@@ -70,8 +70,17 @@ class MainHandler(webapp2.RequestHandler):
 			'login_url': users.create_login_url('/'),
 			'user': user_profile}))
 
+class UserProfileHandler(webapp2.RequestHandler):
+	def get(self):
+		user = users.get_current_user()
+		user_profile = account_services.getPicture(user.email())
+		template_page = 'profile'
+		page_template = JINJA_ENVIRONMENT.get_template('templates/%s.html' % template_page)
+		self.response.out.write(page_template.render({'user': user_profile}))
+
 app = webapp2.WSGIApplication([
 	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
 	('/invite', InvitationHandler),
-	('/addUser', AddUserHandler)
+	('/addUser', AddUserHandler),
+	('/profile', UserProfileHandler)
 ], debug=True)
