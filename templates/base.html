@@ -25,7 +25,7 @@
     <a href="faq">FAQ</a>
     <a href="mailto:info-academy@thegovlab.org">Contact Us</a>
     {% if user %}
-    <a href="/"><img class="avatar" alt="{{user.name}} "src="{{userPicture|default('assets/silhouette200.png')}}"</a>
+    <a href="/"><img class="avatar" alt="{{user.name.givenName}} "src="{{user.thumbnailPhotoUrl|default('assets/silhouette200.png')}}"</a>
     {% else %}
     <a href="{{login_url}}">Sign-in</a>
     {% endif %}
@@ -71,8 +71,18 @@
     <script type="text/javascript" src="scripts.js"></script>
 
 
-    <!-- ADD Google Analytics. 
-         ADD Feedback module. -->     
+    <!-- ADD Google Analytics. -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54283373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- ADD Feedback module. -->     
 
     <!-- Claudio Local Development Scripts -->
     <script>

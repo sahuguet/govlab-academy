@@ -5,6 +5,7 @@ from google.appengine.api import mail
 import webapp2
 import jinja2
 from google.appengine.api import users
+import account_services
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -59,7 +60,15 @@ class MainHandler(webapp2.RequestHandler):
 			else:
 				template_page = 'academy'
 		page_template = JINJA_ENVIRONMENT.get_template('templates/%s.html' % template_page)
-		self.response.out.write(page_template.render({'login_url': users.create_login_url('/'), 'user': user}))
+		user_profile = None
+		if template_page == 'dashboard' and  user:
+			logging.info("Fetching profile for %s." % user)
+			user_profile = account_services.getPicture(user.email())
+			logging.info(user_profile)
+		self.response.out.write(page_template.render({
+			'logout_url': users.create_logout_url('/'),
+			'login_url': users.create_login_url('/'),
+			'user': user_profile}))
 
 app = webapp2.WSGIApplication([
 	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),

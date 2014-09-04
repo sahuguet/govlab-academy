@@ -29,6 +29,16 @@ JINJA_ENVIRONMENT = jinja2.Environment(
   extensions=['jinja2.ext.autoescape'],
   autoescape=True)
 
+def getPicture(userid):
+	credentials = SignedJwtAssertionCredentials(SERVICE_ACCOUNT_EMAIL,
+			key,
+			scope=DIRECTORY_SCOPES,
+			sub=USER_DELEGATION)
+	http = httplib2.Http()
+	http = credentials.authorize(http)
+	service = build('admin', 'directory_v1', http=http)
+	return service.users().get(userKey=userid).execute()
+
 class AllUsersHandler(webapp2.RequestHandler):
 	def get(self):
 		credentials = SignedJwtAssertionCredentials(SERVICE_ACCOUNT_EMAIL,
