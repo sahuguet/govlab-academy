@@ -89,14 +89,6 @@ li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   overflow: hidden; }
 
-.b-button {
-  background-color: #f05a28;
-  padding: 8px 20px;
-  font-weight: 600;
-  color: white; }
-  .b-button:hover {
-    color: rgba(255, 255, 255, 0.8); }
-
 footer {
   background-color: rgba(0, 0, 0, 0.8); }
   footer .b-centered {
@@ -106,6 +98,26 @@ footer {
     font-weight: 400; }
   footer p {
     color: white; }
+
+textarea {
+  min-height: 200px; }
+
+.b-form-section {
+  display: block;
+  clear: both;
+  padding: 15px 0; }
+
+.form-control {
+  margin-bottom: 10px; }
+
+.b-button {
+  background-color: #f05a28;
+  padding: 8px 20px;
+  font-weight: 600;
+  color: white;
+  border: 0; }
+  .b-button:hover {
+    color: rgba(255, 255, 255, 0.8); }
 
 @media only screen and (max-width: 1023px) {
   .b-top-layer {
