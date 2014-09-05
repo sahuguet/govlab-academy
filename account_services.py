@@ -29,7 +29,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
   extensions=['jinja2.ext.autoescape'],
   autoescape=True)
 
-def getPicture(userid):
+def getUserProfile(userid):
 	credentials = SignedJwtAssertionCredentials(SERVICE_ACCOUNT_EMAIL,
 			key,
 			scope=DIRECTORY_SCOPES,

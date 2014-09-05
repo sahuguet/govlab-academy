@@ -4,8 +4,12 @@ import logging
 from google.appengine.api import mail
 import webapp2
 import jinja2
+if os.environ['SERVER_SOFTWARE'].startswith('Development'):
+	import account_services_dev as govlab
+else:
+	import account_services as govlab
 from google.appengine.api import users
-import account_services
+
 from model import UserProfile
 import json
 
@@ -29,7 +33,7 @@ class MainHandler(webapp2.RequestHandler):
 		user_profile = None
 		if user:
 			logging.info("Fetching profile for %s." % user)
-			user_profile = account_services.getPicture(user.email())
+			user_profile = govlab.getUserProfile(user.email())
 			logging.info(user_profile)
 		self.response.out.write(page_template.render({
 			'logout_url': users.create_logout_url('/'),
@@ -42,7 +46,7 @@ class UserProfileHandler(webapp2.RequestHandler):
 		user = users.get_current_user()
 		user_profile = UserProfile.get_by_id(user.email())
 		logging.info(user_profile)
-		user_profile_govlab = account_services.getPicture(user.email())
+		user_profile_govlab = govlab.getUserProfile(user.email())
 		user_profile_json = {}
 		if user_profile and user_profile.profile:
 			user_profile_json = json.loads(user_profile.profile)
