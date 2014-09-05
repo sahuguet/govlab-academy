@@ -11,6 +11,9 @@ $white_20: rgba(255, 255, 255, 0.2);
 $white_40: rgba(255, 255, 255, 0.4);
 $white_60: rgba(255, 255, 255, 0.6);
 $white_80: rgba(255, 255, 255, 0.8);
+$green: rgba(40, 130, 24, 1);
+$red: rgba(173, 13, 45, 1);
+$blue: rgba(13, 72, 169, 1);
 
 $main-font: 'proxima-nova', 'Helvetica Neue', Healvetica, Arial, sans-serif;
 
@@ -34,4 +37,5 @@ $main-font: 'proxima-nova', 'Helvetica Neue', Healvetica, Arial, sans-serif;
 @import "mobile";
 @import "desktop";
 @import "dashboard";
+@import "library";
 
