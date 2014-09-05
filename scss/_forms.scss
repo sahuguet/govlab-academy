@@ -1,4 +1,7 @@
-
+input:focus, textarea:focus, sleect:focus, .form-control:focus {
+  border-color: $primary_color !important;
+  box-shadow: 0 0 3px $gray_20 !important;
+}
 
 textarea {
 	min-height: 200px;

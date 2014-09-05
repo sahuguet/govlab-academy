@@ -99,6 +99,10 @@ footer {
   footer p {
     color: white; }
 
+input:focus, textarea:focus, sleect:focus, .form-control:focus {
+  border-color: #f05a28 !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) !important; }
+
 textarea {
   min-height: 200px; }
 
