@@ -6,47 +6,13 @@ import webapp2
 import jinja2
 from google.appengine.api import users
 import account_services
+from model import UserProfile
+import json
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
-
-class InvitationHandler(webapp2.RequestHandler):
-	def get(self):
-		message = mail.EmailMessage()
-		message.sender = 'arnaud@thegovlab.org'
-		message.to = 'arnaud.sahuguet@gmail.com'
-		message.body = """
-I've invited you to Example.com!
-
-To accept this invitation, click the following link,
-or copy and paste the URL into your browser's address
-bar:
-
-%s""" % "you have been invited."
-		message.send()
-		self.response.write('email sent')
-
-class AddUserHandler(webapp2.RequestHandler):
-	def get(self):
-		template = JINJA_ENVIRONMENT.get_template('templates/user_management.html')
-		self.response.out.write(template.render({}))
-
-	def post(self):
-		data = self.request.get('users')
-		users = []
-		logging.info(data)
-		for line in data.split('\n'):
-			if line.startswith('#'):
-				continue
-			line = line.strip()
-			logging.info(line)
-			(fname, lname, affiliation, team) = line.split(',')
-			if affiliation not in ['nyu', 'mit']:
-				affiliation = 'online'
-			users.append({'fname': fname, 'lname': lname, 'affiliation': affiliation, 'team': team})
-		self.response.out.write(users)
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self, page):
@@ -72,15 +38,44 @@ class MainHandler(webapp2.RequestHandler):
 
 class UserProfileHandler(webapp2.RequestHandler):
 	def get(self):
+		logging.info("inside GET")
 		user = users.get_current_user()
-		user_profile = account_services.getPicture(user.email())
+		user_profile = UserProfile.get_by_id(user.email())
+		logging.info(user_profile)
+		user_profile_govlab = account_services.getPicture(user.email())
+		user_profile_json = {}
+		if user_profile and user_profile.profile:
+			user_profile_json = json.loads(user_profile.profile)
+		user_profile_json['user'] = user_profile_govlab
 		template_page = 'profile'
 		page_template = JINJA_ENVIRONMENT.get_template('templates/%s.html' % template_page)
-		self.response.out.write(page_template.render({'user': user_profile}))
+		self.response.out.write(page_template.render(user_profile_json))
+
+	def post(self):
+		logging.info("inside POST")
+		user = users.get_current_user()
+		user_profile_json = {
+		'fname': self.request.get('fname'),
+		'lname': self.request.get('lname'),
+		'city_state': self.request.get('city_state'),
+		'country': self.request.get('country'),
+		'facebook': self.request.get('facebook'),
+		'twitter': self.request.get('twitter'),
+		'github': self.request.get('github'),
+		'year_experience': self.request.get('year_experience'),
+		'sector_experience': self.request.get('sector_experience'),
+		'experience': self.request.get('experience'),
+		'offer': self.request.get('offer'),
+		'demand': self.request.get('demand')
+		}
+		user_profile = UserProfile(id=user.email(), profile=json.dumps(user_profile_json))
+		user_profile.put()
+		logging.info('profile stored')
+		self.redirect('/profile')
 
 app = webapp2.WSGIApplication([
 	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
-	('/invite', InvitationHandler),
-	('/addUser', AddUserHandler),
+#	('/invite', InvitationHandler),
+#	('/addUser', AddUserHandler),
 	('/profile', UserProfileHandler)
 ], debug=True)

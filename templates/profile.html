@@ -9,19 +9,19 @@
 <section class="b-centered b-content">
 	<h1>My public profile</h1>
 
-<form>
+<form action="/profile" METHOD="POST">
   <label for="name">Name</label>
     <div class="row form-group">
         <div class="col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text" class="form-control" placeholder="First Name" name="fname" value="{{fname}}">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input type="text" class="form-control" placeholder="Last Name">
+            <input type="text" class="form-control" placeholder="Last Name" name="lname" value="{{lname}}">
             </div>
         </div>
     </div>
@@ -31,13 +31,13 @@
         <div class="col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                <input type="text" class="form-control" placeholder="City, State">
+                <input type="text" class="form-control" placeholder="City, State" name="city_state" value="{{city_state}}">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-flag"></i></span></span>
-            <input type="text" class="form-control" placeholder="Country">
+            <input type="text" class="form-control" placeholder="Country" name="country" value="{{country}}">
             </div>
         </div>
     </div>
@@ -47,19 +47,19 @@
         <div class="col-xs-4">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-                <input type="text" class="form-control" placeholder="your facebook account">
+                <input type="text" class="form-control" placeholder="your facebook account" name="facebook" value="{{facebook}}">
             </div>
         </div>
         <div class="col-xs-4">
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-            <input type="text" class="form-control" placeholder="your Twitter handle">
+            <input type="text" class="form-control" placeholder="your Twitter handle" name="twitter" value="{{twitter}}">
             </div>
         </div>
             <div class="col-xs-4">
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-github"></i></span>
-            <input type="text" class="form-control" placeholder="your GitHub account">
+            <input type="text" class="form-control" placeholder="your GitHub account" name="github" value="{{github}}">
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
         <div class="row form-group">
         <div class="col-xs-3">
             <div class="input-group">
-              <select class="form-control">
+              <select class="form-control" name="year_experience" value="{{year_experience}}">
                <option>1 year</option>
          <option>2 years</option>
          <option>3 years</option>
@@ -79,7 +79,7 @@
         </div>
         <div class="col-xs-3">
             <div class="input-group">
-            <select class="form-control">
+            <select class="form-control" name="sector_experience" value="{{sector_experience}}">
                <option>Academia</option>
                <option>Industry</option>
                <option>Public Sector</option>
@@ -89,7 +89,7 @@
             </div>
         <div class="col-xs-6">
             <div class="input-group">
-            <textarea class="form-control" cols="80" rows="8" placeholder="Tell us about your Experience"></textarea>
+            <textarea class="form-control" cols="80" rows="8" placeholder="Tell us about your Experience" name="experience">{{experience}}</textarea>
         </div>
     </div>
   </div>
@@ -98,12 +98,12 @@
         <div class="row form-group">
         <div class="col-xs-6">
             <div class="input-group">
-               <textarea class="form-control" cols="80" rows="8" placeholder="What help you can offer"></textarea>     
+               <textarea class="form-control" cols="80" rows="8" placeholder="What help you can offer" name="offer" >{{offer}}</textarea>     
             </div>
         </div>
         <div class="col-xs-6">
             <div class="input-group">
-               <textarea class="form-control" cols="80" rows="8" placeholder="What help you are looking for"></textarea>     
+               <textarea class="form-control" cols="80" rows="8" placeholder="What help you are looking for" name="demand"  >{{demand}}</textarea>     
             </div>
         </div>
     </div>
@@ -113,7 +113,16 @@
         </div>
 
 </form>
-
+<script>
+// jQuery code to make sure the <select> display the correct value, as encoded by @value.
+$(document).ready(function() {
+  $('.input-group select').children('option').each(function(i,v) {
+    if (v.text == $(v).parent().attr('value')) {
+      $(v).attr('selected','')
+    }
+  });
+});
+</script>
     </section>
 
 {% endblock %}
