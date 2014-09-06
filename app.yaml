@@ -37,6 +37,10 @@ handlers:
   script: account_services.app
   login: required
 
+- url: /snippet/.*
+  script: snippet.app
+  login: required
+
 - url: /feedback
   script: feedback.app
 
