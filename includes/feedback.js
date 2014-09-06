@@ -410,7 +410,7 @@
 				});
 				
 				$(document).on('selectstart dragstart', document, function(e) {
-					//e.preventDefault();
+					//e.preventDefault();  // HACK Arnaud
 				});
 				
 				$(document).on('click', '#feedback-highlighter-back', function() {
