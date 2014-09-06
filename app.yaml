@@ -1,5 +1,5 @@
 application: govlabacademy
-version: 1
+version: 1dev
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -33,7 +33,7 @@ handlers:
   static_files: library.json
   upload: library.json
 
-- url: /allusers
+- url: /fall-2014-class
   script: account_services.app
   login: required
 
