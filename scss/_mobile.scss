@@ -6,7 +6,6 @@
   .b-top-layer {
     position: relative;
     left: 0;
-    background-color: $white;
     @include transition;
     @include back-panel-shadow;
 
