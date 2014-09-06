@@ -37,6 +37,12 @@ handlers:
   script: account_services.app
   login: required
 
+- url: /feedback
+  script: feedback.app
+
+- url: /viewFeedback
+  script: feedback.app
+
 - url: /profile
   script: main.app
   login: required
