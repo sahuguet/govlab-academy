@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>User Feedback</title>
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+</head>
+<body>
+	<h1>List of all feedback received from our users</h1>
+	{% for item in items %}
+	<li>
+		<div>Browser info: <p>{{item.content.browser}}<p></div>
+		<div>Note: <p>{{item.content.note}}</p></div>
+		<div style="width:400px; border: solid;"><img width="100%" src="{{item.content.img}}"/></div>
+		<div>{{item.date}}</div>
+	</li>
+	{% endfor %}
+</body>
+</html>
