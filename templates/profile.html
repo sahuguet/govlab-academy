@@ -20,9 +20,25 @@
         <input type="text" class="form-control" placeholder="Country" name="country" value="{{country}}">
 
         <label for="name">Social networks</label>
-        <input type="text" class="form-control" placeholder="your facebook account" name="facebook" value="{{facebook}}">
-        <input type="text" class="form-control" placeholder="your Twitter handle" name="twitter" value="{{twitter}}">
-        <input type="text" class="form-control" placeholder="your GitHub account" name="github" value="{{github}}">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+          <input type="text" class="form-control" placeholder="your facebook account" name="facebook" value="{{facebook}}">
+        </div>
+
+        <br/>
+
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
+          <input type="text" class="form-control" placeholder="your Twitter handle" name="twitter" value="{{twitter}}">
+        </div>
+
+        <br/>
+
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-github"></i></span>
+          <input type="text" class="form-control" placeholder="your GitHub account" name="github" value="{{github}}">
+        </div>
+
     </div>
     <div class="b-half m-right">
         <label for="name">Experience</label>
@@ -44,10 +60,12 @@
     <div class="b-form-section">
         <h4>Skill "Marketplace"</h4>
         <div class="b-half">
-            <textarea class="form-control" placeholder="What help you can offer" name="offer" >{{offer}}</textarea>     
+          <label for="name">Skills you can offer</label>
+            <textarea class="form-control" placeholder="Using keywords, summarize your skills. (e.g. what do you do well)" name="offer" >{{offer}}</textarea>     
         </div>
         <div class="b-half m-right">
-            <textarea class="form-control" placeholder="What help you are looking for" name="demand"  >{{demand}}</textarea>    
+          <label for="name">Interests you have</label>
+            <textarea class="form-control" placeholder="Using keywords, summarize your interests. (e.g. topics about which you are passionate)" name="demand"  >{{demand}}</textarea>    
         </div>
     </div>
     <div class="b-form-section">
