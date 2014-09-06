@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: $main-font;
-  font-size: 1.1rem;
+  font-size: 14px;
   font-weight: 200;
   padding: 0;
   color: $secondary-color;
@@ -9,6 +9,10 @@ body {
 
 body {
   border-top: 3px solid $primary-color;
+}
+
+.b-top-layer {
+    background-color: $white;
 }
 
 .b-centered {
@@ -115,16 +119,7 @@ li {
   overflow:hidden;
 }
 
-.b-button {
-  background-color: $primary-color;
-  padding: 8px 20px;
-  font-weight: 600;
-  color: $white;
 
-  &:hover {
-    color: $white_80;
-  } 
-}
 
 footer {
   background-color: $gray_80;

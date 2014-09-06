@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "proxima-nova", "Helvetica Neue", Healvetica, Arial, sans-serif;
-  font-size: 1.1rem; // HACK ARNAUD.
+  font-size: 14px;
   font-weight: 200;
   padding: 0;
   color: #444444; }
@@ -89,14 +89,6 @@ li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   overflow: hidden; }
 
-.b-button {
-  background-color: #f05a28;
-  padding: 8px 20px;
-  font-weight: 600;
-  color: white; }
-  .b-button:hover {
-    color: rgba(255, 255, 255, 0.8); }
-
 footer {
   background-color: rgba(0, 0, 0, 0.8); }
   footer .b-centered {
@@ -106,6 +98,26 @@ footer {
     font-weight: 400; }
   footer p {
     color: white; }
+
+textarea {
+  min-height: 200px; }
+
+.b-form-section {
+  display: block;
+  clear: both;
+  padding: 15px 0; }
+
+.form-control {
+  margin-bottom: 10px; }
+
+.b-button {
+  background-color: #f05a28;
+  padding: 8px 20px;
+  font-weight: 600;
+  color: white;
+  border: 0; }
+  .b-button:hover {
+    color: rgba(255, 255, 255, 0.8); }
 
 @media only screen and (max-width: 1023px) {
   .b-top-layer {
@@ -346,6 +358,14 @@ footer {
   #library .b-filters .e-filter:hover {
     background-color: rgba(0, 0, 0, 0.2);
     color: rgba(0, 0, 0, 0.8); }
+#library .b-filters .e-filters-inline a {
+  text-decoration: none; }
+  #library .b-filters .e-filters-inline a:hover {
+    text-decoration: none;
+    color: white !important; }
+  #library .b-filters .e-filters-inline a.selected {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white; }
 #library .b-filters .m-doc {
   border-left-color: #f05a28; }
   #library .b-filters .m-doc:hover {
@@ -363,23 +383,28 @@ footer {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
   #library .b-filters .e-filter-list li {
     list-style: none;
-    margin-left: 0;
-    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-bottom: 7px;
     display: inline-block; }
     #library .b-filters .e-filter-list li::before {
       display: none; }
+  #library .b-filters .e-filter-list a {
+    text-decoration: none; }
+    #library .b-filters .e-filter-list a:hover {
+      text-decoration: none; }
+    #library .b-filters .e-filter-list a.selected {
+      background-color: rgba(0, 0, 0, 0.4);
+      color: white; }
   #library .b-filters .e-filter-list:last-child {
     border-right: 0; }
 #library .b-library-item {
-  float: left;
-  width: 281px;
+  width: 275px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-top: 3px solid #f05a28;
   padding: 15px;
+  overflow: hidden;
   margin: 0 10px 10px 0;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1); }
-  #library .b-library-item:nth-child(3n) {
-    margin-right: 0; }
   #library .b-library-item h3 {
     margin-top: 0; }
   #library .b-library-item .e-biblio {
@@ -391,9 +416,9 @@ footer {
     #library .b-library-item .e-library-action:hover {
       background-color: rgba(0, 0, 0, 0.8);
       text-decoration: none; }
-  #library .b-library-item.m-doc {
+  #library .b-library-item.m-doc, #library .b-library-item[data-type="document"] {
     border-top-color: #f05a28; }
-  #library .b-library-item.m-video {
+  #library .b-library-item.m-video, #library .b-library-item[data-type="video"] {
     border-top-color: #288218; }
-  #library .b-library-item.m-people {
+  #library .b-library-item.m-people, #library .b-library-item[data-type="people"] {
     border-top-color: #0d48a9; }
