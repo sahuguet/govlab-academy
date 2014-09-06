@@ -66,8 +66,10 @@ class UserProfileHandler(webapp2.RequestHandler):
 		'facebook': self.request.get('facebook'),
 		'twitter': self.request.get('twitter'),
 		'github': self.request.get('github'),
+		'linkedin': self.request.get('linkedin'),
 		'year_experience': self.request.get('year_experience'),
 		'sector_experience': self.request.get('sector_experience'),
+		'expertise': self.request.get('expertise'),
 		'experience': self.request.get('experience'),
 		'offer': self.request.get('offer'),
 		'demand': self.request.get('demand')
