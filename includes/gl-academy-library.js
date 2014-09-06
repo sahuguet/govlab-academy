@@ -25,9 +25,10 @@ function updateCount() {
 function processContent() {
 	$container.isotope({
   itemSelector : '.b-library-item',
-  masonry: {
-    columnWidth: 80
-  }
+  layoutMode: 'fitRows'
+  // masonry: {
+  //   columnWidth: 80
+  // }
 	});
  updateCount(); 
 // filter buttons
@@ -68,7 +69,7 @@ $(function() {
 		});
 		// We create the right filers.
 		$.each(all_tags, function(k, v) {
-			console.log(k + " " + v);
+			// console.log(k + " " + v);
 			$('#filter-by-topic').append($(sprintf('<li><a class="e-filter" href="#filter-topic-%(topic)s" data-filter-value="[data-topic~=\'%(topic)s\']">%(topicName)s</a>', { 'topic': k, 'topicName': v })));
 		});
 

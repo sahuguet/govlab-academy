@@ -1,0 +1,129 @@
+#library {
+	.b-filters {
+
+		.e-filter {
+			padding: 5px 8px;
+			background-color: $gray_10;
+			border-left: 2px solid $gray_20;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $gray_20;
+				color: $gray_80;
+			}
+		}
+
+		.e-filters-inline a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+				color: $white !important;
+			}
+
+			&.selected {
+				background-color: $gray_40;
+				color: $white;
+
+			}
+		}
+
+		.m-doc {
+			border-left-color: $primary-color;
+
+			&:hover {
+				background-color: $primary-color;				
+			}
+		}
+		.m-video {
+			border-left-color: $green;
+			
+			&:hover {
+				background-color: $green;				
+			}
+		}
+		.m-people {
+			border-left-color: $blue;
+			
+			&:hover {
+				background-color: $blue;				
+			}
+		}
+		
+		.e-filter-list {
+			// margin-bottom: 10px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid $gray_20;
+
+			li {
+				list-style: none;
+				margin-left: 4px;
+				margin-bottom: 7px;
+				display: inline-block;
+
+				&::before {
+					display: none;
+				}
+			}
+
+			a {
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: none;
+				}
+
+				&.selected {
+					background-color: $gray_40;
+					color: $white;
+
+				}
+			}
+
+			&:last-child {
+				border-right: 0;
+			}
+		}
+	}
+
+	.b-library-item {
+		// float: left; // trick 
+		width: 275px;
+		// height: 300px;
+		border: 1px solid $gray_20;
+		border-top: 3px solid $primary-color;
+		padding: 15px;
+		overflow: hidden;
+		margin: 0 10px 10px 0;
+		@include drop-shadow;
+
+
+		h3 {
+			margin-top: 0;
+		}
+
+		.e-biblio {
+			font-size: .8rem;
+			// overflow: hidden;
+			// height: 80px;
+		}
+
+		& .e-library-action {
+			padding: 5px 8px;
+			background-color: $primary-color;
+			color: $white;		
+			
+			&:hover {
+				background-color: $gray_80;
+				text-decoration: none;
+			}
+		}
+
+		&.m-doc,
+		&[data-type="document"] { border-top-color: $primary-color; }
+		&.m-video,
+		&[data-type="video"] { border-top-color: $green; }
+		&.m-people,
+		&[data-type="people"] { border-top-color: $blue; }
+	}
+}
