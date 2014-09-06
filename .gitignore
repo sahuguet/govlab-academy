@@ -1,0 +1,5 @@
+#Ignore .pyc files
+*.pyc
+
+#Ignore Sass cache stuff
+scss/.sass-cache/*
