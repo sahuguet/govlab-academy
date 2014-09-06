@@ -6,7 +6,6 @@
   .b-top-layer {
     position: relative;
     left: 0;
-    min-height: 580px;
     background-color: $white;
     @include transition;
     @include back-panel-shadow;
@@ -55,7 +54,7 @@
 
   .b-navigation {
     position: fixed;
-    z-index: 0;
+    z-index: -1;
     background-color: $gray_80;
     top: 0;
     left: 0;
@@ -72,10 +71,10 @@
     a {
       display: block;
       color: $white;
-      padding: 10px 0;
+      padding: 18px 0;
       border-top: 1px solid $white_20;
       border-bottom: 1px solid $gray_10;
-      font-size: 16px;
+      font-size: 22px;
 
       &:first-of-type {
         border-top: 0;
