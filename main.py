@@ -44,13 +44,25 @@ class UserProfileHandler(webapp2.RequestHandler):
 	def get(self):
 		logging.info("inside GET")
 		user = users.get_current_user()
-		user_profile = UserProfile.get_by_id(user.email())
+		user_id = user.email()
+		# Checking someone else's profile
+		readonly = False
+		if self.request.get('user_email'):
+			user_id = self.request.get('user_email')
+			logging.info("Showing readonly profile for user %s." % user_id)
+			readonly = True
+		user_profile = UserProfile.get_by_id(user_id)
 		logging.info(user_profile)
-		user_profile_govlab = govlab.getUserProfile(user.email())
+		user_profile_govlab = govlab.getUserProfile(user_id)
+		logging.info(user_profile_govlab)
+		if user_profile_govlab == None:
+			self.abort(404)
 		user_profile_json = {}
 		if user_profile and user_profile.profile:
 			user_profile_json = json.loads(user_profile.profile)
 		user_profile_json['user'] = user_profile_govlab
+		user_profile_json['readonly'] = readonly
+		user_profile_json['user_id'] = user_id
 		template_page = 'profile'
 		page_template = JINJA_ENVIRONMENT.get_template('templates/%s.html' % template_page)
 		self.response.out.write(page_template.render(user_profile_json))

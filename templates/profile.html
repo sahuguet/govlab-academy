@@ -6,8 +6,15 @@
 {% endblock %}
 
 {% block content %}
+
+{% if fname is defined %}
 <section class="b-centered b-content">
-	<h1>My public profile</h1>
+  {% if readonly == True %}
+    <h1>{{fname}} {{lname}}'s profile</h1>
+  {% else %}
+  	<h1>My public profile</h1>
+  {% endif %}
+
 
     <form action="/profile" METHOD="POST">
     <div class="b-half">
@@ -77,9 +84,11 @@
             <textarea class="form-control" placeholder="Using keywords, summarize your interests. (e.g. topics about which you are passionate)" name="demand"  >{{demand}}</textarea>    
         </div>
     </div>
+    {% if readonly == True %}
     <div class="b-form-section">
         <button type="submit" class="b-button">Update my profile</button>
     </div>
+    {% endif %}
     </form>
     <script>
     // jQuery code to make sure the <select> display the correct value, as encoded by @value.
@@ -92,5 +101,20 @@
     });
     </script>
 </section>
+{% else %}
+<section class="b-centered b-content">
+  <h1>User {{user_id}} has not yet filled his/her profile.</h1>
+</section>
+{% endif %}
 
+{% endblock %}
+
+{% block script_post %}
+{% if readonly == True %}
+<script>
+  $(document).ready(function() {
+    $('form :input').attr('disabled', true);
+  });
+</script>
+{% endif %}
 {% endblock %}

@@ -16,6 +16,8 @@ if os.environ['SERVER_SOFTWARE'].startswith('Development'):
 else:
 	import account_services as govlab
 
+from apiclient.errors import HttpError
+
 # Email of the Service Account.
 SERVICE_ACCOUNT_EMAIL = '436251601698-nt1t0h4avvi0hu5udap80e0mrn3nl56d@developer.gserviceaccount.com'
 # Path to the Service Account's Private Key file.
@@ -42,7 +44,10 @@ def getUserProfile(userid):
 	http = httplib2.Http()
 	http = credentials.authorize(http)
 	service = build('admin', 'directory_v1', http=http)
-	return service.users().get(userKey=userid).execute()
+	try:
+		return service.users().get(userKey=userid).execute()
+	except HttpError, e:
+		return None
 
 class AllUsersHandler(webapp2.RequestHandler):
 	def get(self):
