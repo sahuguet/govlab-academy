@@ -47,14 +47,14 @@
 		{% endfor %}
 		</ul>
 
-		<h2>Location = NYU ({{nyu_students|length}}</h2>
+		<h2>Location = NYU ({{nyu_students|length}})</h2>
 		<ul>
 		{% for user in nyu_students %}
     	{{student(user)}}
 		{% endfor %}
 		</ul>
 
-		<h2>On-line ({{online_students|length}}</h2>
+		<h2>On-line ({{online_students|length}})</h2>
 		<ul>
 		{% for user in online_students %}
     	{{student(user)}}
