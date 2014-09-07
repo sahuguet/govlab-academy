@@ -7,10 +7,17 @@
 
 {% block content %}
 
-{% if fname is defined %}
+{% if readonly == True and fname is not defined %}
+<section class="b-centered b-content">
+  <h1>User {{user_id}} has not yet filled his/her profile.</h1>
+</section>
+{% else %}
 <section class="b-centered b-content">
   {% if readonly == True %}
-    <h1>{{fname}} {{lname}}'s profile</h1>
+    <h1>
+      {{fname}} {{lname}}'s profile &nbsp;
+      <img class="avatar-x2" alt="{{user.name.givenName}}" src="{{user.thumbnailPhotoUrl|default('assets/silhouette200.png')}}"/>
+    </h1>
   {% else %}
   	<h1>My public profile</h1>
   {% endif %}
@@ -84,7 +91,7 @@
             <textarea class="form-control" placeholder="Using keywords, summarize your interests. (e.g. topics about which you are passionate)" name="demand"  >{{demand}}</textarea>    
         </div>
     </div>
-    {% if readonly == True %}
+    {% if readonly != True %}
     <div class="b-form-section">
         <button type="submit" class="b-button">Update my profile</button>
     </div>
@@ -100,10 +107,6 @@
       });
     });
     </script>
-</section>
-{% else %}
-<section class="b-centered b-content">
-  <h1>User {{user_id}} has not yet filled his/her profile.</h1>
 </section>
 {% endif %}
 

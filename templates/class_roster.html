@@ -38,7 +38,11 @@
 	<h1>Overview of the Fall 2014 Class</h1>
 
 	<h2>Faculty</h2>
-	<p>coming soon</p>
+		<ul>
+		{% for user in faculty %}
+    	{{student(user)}}
+		{% endfor %}
+		</ul>
 
 	<h2>Location = MIT ({{mit_students|length}})</h2>
 		<ul>

@@ -64,21 +64,28 @@ class AllUsersHandler(webapp2.RequestHandler):
 		mit_students = []
 		nyu_students = []
 		online_students = []
-		for user in service.users().list(domain='thegovlab.org').execute()['users']:
+		faculty = []
+		for user in service.users().list(domain='thegovlab.org', maxResults=500, orderBy='familyName').execute()['users']:
 			if user['orgUnitPath'] == '/The GovLab Academy/SPPT Fall 2014/MIT':
 				mit_students.append(user)
 			if user['orgUnitPath'] == '/The GovLab Academy/SPPT Fall 2014/NYU':
 				nyu_students.append(user)
 			if user['orgUnitPath'] == '/The GovLab Academy/SPPT Fall 2014/Online':
 				online_students.append(user)
+			if user['primaryEmail'].split('@')[0] in [ 'arnaud', 'noveck', 'alan', 'nikki' ]:
+				faculty.append(user)
 		logging.info(mit_students)
 		template = JINJA_ENVIRONMENT.get_template('templates/class_roster.html')
 		sortStudents = lambda x:x['name']['familyName']
 		template_values = {
-		'user': user_profile_govlab,
-		'mit_students': sorted(mit_students, key=sortStudents),
-		'nyu_students': sorted(nyu_students, key=sortStudents),
-		'online_students': sorted(online_students, key=sortStudents) }
+		'me': user_profile_govlab,
+		#'mit_students': sorted(mit_students, key=sortStudents),
+		#'nyu_students': sorted(nyu_students, key=sortStudents),
+		#'online_students': sorted(online_students, key=sortStudents)
+		'faculty': faculty,
+		'mit_students': mit_students,
+		'nyu_students': nyu_students,
+		'online_students': online_students }
 		self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([

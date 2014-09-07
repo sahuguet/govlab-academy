@@ -38,13 +38,15 @@ class MainHandler(webapp2.RequestHandler):
 		self.response.out.write(page_template.render({
 			'logout_url': users.create_logout_url('/'),
 			'login_url': users.create_login_url('/'),
-			'user': user_profile}))
+			'user': user_profile,
+			'me': user_profile }))
 
 class UserProfileHandler(webapp2.RequestHandler):
 	def get(self):
 		logging.info("inside GET")
 		user = users.get_current_user()
 		user_id = user.email()
+		me = govlab.getUserProfile(user.email())
 		# Checking someone else's profile
 		readonly = False
 		if self.request.get('user_email'):
@@ -63,6 +65,7 @@ class UserProfileHandler(webapp2.RequestHandler):
 		user_profile_json['user'] = user_profile_govlab
 		user_profile_json['readonly'] = readonly
 		user_profile_json['user_id'] = user_id
+		user_profile_json['me'] = me
 		template_page = 'profile'
 		page_template = JINJA_ENVIRONMENT.get_template('templates/%s.html' % template_page)
 		self.response.out.write(page_template.render(user_profile_json))
