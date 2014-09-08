@@ -263,7 +263,8 @@ textarea {
     margin: 0 auto; }
     .b-navigation a {
       display: inline-block;
-      padding: 8px 16px; }
+      padding: 8px 16px;
+      vertical-align: top; }
     .b-navigation a:hover {
       background-color: #f05a28;
       color: white;
