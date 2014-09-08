@@ -9,14 +9,14 @@
     <!-- Extra includes PRE-->
     {% block extras_pre %}{%endblock %}
 
-    <link rel="stylesheet" href="assets/icomoon/style.css">
-    <link rel="stylesheet" href="scss/styles.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <script type="text/javascript" src="includes/jquery/jquery-2.1.0.min.js"></script>
-    <script src="includes/modernizr.js"></script> <!-- Modernizr -->
+    <link rel="stylesheet" href="/assets/icomoon/style.css">
+    <link rel="stylesheet" href="/scss/styles.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script type="text/javascript" src="/includes/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/includes/modernizr.js"></script> <!-- Modernizr -->
 
-    <script src="includes/feedback.js"></script>
-    <link rel="stylesheet" href="assets/feedback.css" />
+    <script src="/includes/feedback.js"></script>
+    <link rel="stylesheet" href="/assets/feedback.css" />
 
     <style>
     // Hack for now; TODO @Claudio
@@ -43,7 +43,7 @@
     <!-- <a href="/faq">FAQ</a> -->
     <a href="mailto:info-academy@thegovlab.org">Contact Us</a>
     {% if me %}
-    <a href="/profile"><img class="avatar" alt="{{me.name.givenName}}" src="{{me.thumbnailPhotoUrl|default('assets/silhouette200.png')}}"/></a>
+    <a href="/profile"><img class="avatar" alt="{{me.name.givenName}}" src="{{me.thumbnailPhotoUrl|default('/assets/silhouette200.png')}}"/></a>
     {% else %}
     <a href="{{login_url}}">Sign-in</a>
     {% endif %}
@@ -55,8 +55,8 @@
         <span id="main-navigation-trigger" class="e-trigger icon-menu"></span>
         
         <div class="b-branding">
-          <a href="#" class="b-govlab-logo"><img src="assets/govlab-logo.png" alt=""></a>
-          <span class="b-academy-logo"><img src="assets/academy-logo.png" alt=""></span>
+          <a href="#" class="b-govlab-logo"><img src="/assets/govlab-logo.png" alt=""></a>
+          <span class="b-academy-logo"><img src="/assets/academy-logo.png" alt=""></span>
         </div>
       </div>
     </header>
@@ -84,7 +84,7 @@
 -->
 
 
-<script type="text/javascript" src="includes/scripts.js"></script>
+<script type="text/javascript" src="/includes/scripts.js"></script>
 
     <!-- ADD Google Analytics. -->
 <script>
@@ -100,7 +100,7 @@
 <script type="text/javascript">
   $.feedback({
     ajaxURL: '/feedback',
-    html2canvasURL: 'includes/html2canvas.js'
+    html2canvasURL: '/includes/html2canvas.js'
         });
     </script>
 

@@ -1,0 +1,82 @@
+{% extends "templates/base.html" %}
+{% block title %}Project: {{project.title}}{% endblock %}
+
+{% block extras_pre %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block extras_post %}
+{%endblock %}
+
+{% block content %}
+
+<form action="/project/{{project.shortName}}" METHOD="POST">
+
+<section class="b-centered b-content">
+	<h1>Project Name</h1>
+		<input type="text" class="form-control b-half" placeholder="Project title" name="title" value="{{project.title}}">
+</section>
+
+<section class="b-centered b-content">
+<h1>Description</h1>
+  <textarea class="form-control" cols="80" rows="4" placeholder="Provide a short description of the project" name="description">{{project.description}}</textarea>
+</section>
+
+{% if readonly != True %}
+<section class="b-centered b-content">
+	<div class="b-form-section">
+    <button type="submit" class="b-button">Update the project</button>
+	</div>
+</section>
+{% endif %}
+
+</form>
+
+<section class="b-centered b-content">
+<h1>Team</h1>
+<ul>
+{% for member in project.members %}
+<li>{{member}} {% endfor %}</li>
+</ul>
+</section>
+
+<section class="b-centered b-content">
+	<h1>Public</h1>
+    <div class="b-half">
+    	<div class="e-half-content">
+      	<iframe src="https://drive.google.com/a/thegovlab.org/embeddedfolderview?id={{project.publicFolder if project.publicFolder != None else '0B-BTzZGOWDTHc3ZNcWlKaUpSU00'}}#list" width="100%" height="600px" frameborder="1"></iframe>
+      </div>
+    </div>
+    <div class="b-half">
+    	<div class="e-half-content">
+    		<a href="#">Project discussion group</a>
+			</div>
+		</div>
+</section>	
+
+<section class="b-centered b-content">
+	<h1>Team only</h1>
+    <div class="b-half">
+    	<div class="e-half-content">
+      	<iframe src="https://drive.google.com/a/thegovlab.org/embeddedfolderview?id={{project.publicFolder if project.publicFolder != None else '0B-BTzZGOWDTHc3ZNcWlKaUpSU00'}}#list" width="100%" height="600px" frameborder="1"></iframe>
+      </div>
+    </div>
+    <div class="b-half">
+    	<div class="e-half-content">
+    		<a href="#">Team discussion group</a>
+			</div>
+		</div>
+</section>
+
+{% endblock %}
+
+{% block script_post %}
+{% if readonly == True %}
+<script>
+  $(document).ready(function() {
+    $('form :input').attr('disabled', true);
+  });
+</script>
+{% endif %}
+{% endblock %}

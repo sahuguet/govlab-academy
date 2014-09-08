@@ -1,0 +1,26 @@
+{% extends "templates/base.html" %}
+{% block title %}The GovLab Academy Fall 2014 Class Projects{% endblock %}
+
+{% block extras_post %}
+{%endblock %}
+
+{% block content %}
+
+<section class="b-centered b-content">
+	<h1>Class Projects ({{projects|length}})</h1>
+
+		<ul>
+		{% for project in projects %}
+    	<li>
+    		<h3><a href="project/{{project.shortName}}">{{project.title}}</a></h3>
+    		<p>{{project.description}}</p>
+    		<p>Team: {% for member in project.members %} {{member}} {% endfor %}</p>
+    		<p><a href="">Team group</a> – <a href="">Team folder</a></p>
+				<p><a href="">Discussion group</a> – <a href="">Public folder</a></p>
+			</li>
+		{% endfor %}
+		</ul>
+
+</section>
+
+{% endblock %}

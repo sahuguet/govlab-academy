@@ -11,3 +11,20 @@ class UserSnippet(ndb.Model):
 		`arnaud@thegovlab.org` will have `arnaud` as the key.
 	"""
 	content = ndb.TextProperty()
+
+class UserProject(ndb.Model):
+	"""NDB model for a project."""
+	shortName = ndb.StringProperty(required=True)
+	title = ndb.StringProperty(required=False)
+	description = ndb.TextProperty(indexed=True, required=True)
+	members = ndb.StringProperty(repeated=True)
+	publicFolder = ndb.StringProperty()
+	teamFolder = ndb.StringProperty()
+
+	def getTeamGroup(self):
+		"""Returns the name of the Google Group for team members of this project."""
+		return "proj-%s-team"
+
+	def getDiscussGroup(self):
+		"""Returns the name of the Google Group for discussion on this project."""
+		return "proj-%s-discuss"

@@ -11,6 +11,8 @@ else:
 from google.appengine.api import users
 
 from model import UserProfile
+from model import UserProject
+
 import json
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -94,9 +96,59 @@ class UserProfileHandler(webapp2.RequestHandler):
 		logging.info('profile stored')
 		self.redirect('/profile')
 
+class AllProjectsHandler(webapp2.RequestHandler):
+	def get(self):
+		user = users.get_current_user()
+		me = govlab.getUserProfile(user.email())
+		page_template = JINJA_ENVIRONMENT.get_template('templates/all_projects.html')
+		projects = UserProject.query().fetch(100)
+		self.response.out.write(page_template.render({
+			'projects': projects,
+			'me': me }))
+
+class ProjectHandler(webapp2.RequestHandler):
+	def get(self, project_id):
+		user = users.get_current_user()
+		me = govlab.getUserProfile(user.email())
+		project = UserProject.get_by_id(project_id)
+		if project == None:
+			self.abort(404)
+		readonly = True
+		logging.info("Checking ACL")
+		logging.info(user.email().split('@')[0] in project.members)
+		if user.email().split('@')[0] in project.members:
+			readonly = False
+		if users.is_current_user_admin():
+			readonly = False
+		logging.info("readonly: %s" % readonly)
+		page_template = JINJA_ENVIRONMENT.get_template('templates/project.html')
+		self.response.out.write(page_template.render({
+			'project': project,
+			'readonly': readonly,
+			'me': me }))
+
+	def post(self, project_id):
+		user = users.get_current_user()
+		me = govlab.getUserProfile(user.email())
+		project = UserProject.get_by_id(project_id)
+		if project == None:
+			logging.error("Not a valid project.")
+			self.abort(404)
+		if (user.email().split('@')[0] not in project.members) and (users.is_current_user_admin() == False):
+			logging.error("Only project team or admin can update a project.")
+			self.abort(404)
+		project_title = self.request.get('title')
+		project_description = self.request.get('description')
+		project.title = project_title
+		project.description = project_description
+		project.put()
+		self.redirect('/project/%s' % project.shortName)
+
 app = webapp2.WSGIApplication([
 	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
 #	('/invite', InvitationHandler),
 #	('/addUser', AddUserHandler),
-	('/profile', UserProfileHandler)
+	('/profile', UserProfileHandler),
+	('/project/([a-z0-9_-]+)', ProjectHandler),
+	('/projects', AllProjectsHandler)
 ], debug=True)
