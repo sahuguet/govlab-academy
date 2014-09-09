@@ -3,50 +3,93 @@
     <title>{{user}}'s Weekly Snippet ({{start_date}}-{{end_date}})</title>
   <head>
     <link rel="stylesheet" href="assets/icomoon/style.css">
-    <link rel="stylesheet" href="scss/styles.css">
+    <link rel="stylesheet" href="localhost:8080/scss/styles.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="/includes/EpicEditor-v0.2.2/js/epiceditor.min.js"></script>
+    <style>
+      #snippet-iframe {
+        border: 1px solid rgba(0,0,0,0.2);
+        font-family: 'proxima nova', sans-serif;
+      }
+      .snippet-header {
+        padding: 3px 0;
+        margin: 0;
+        background-color: rgba(240, 90, 40, 1);
+      }
 
+      .snippet-header > p {
+        margin: 0;
+        border: 1px solid rgba(240, 90, 40, 1);
+        text-align: center;
+        color: #fff;
+        font-size: 0.9rem;
+      }
+
+      #week-nav {
+        padding: 7px 0;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      #week-nav > a { color: rgba(0,0,0,0.4); }
+      #week-nav > a:hover { color: rgba(240, 90, 40, 1); }
+
+      .nav-prev {margin-right: 10px;}
+      .nav-next {margin-left: 10px;}
+
+      #snippet-editor {
+        border-top:1px solid rgba(0,0,0,0.2);
+        border-bottom:1px solid rgba(0,0,0,0.2);
+      }
+      #snippet-editor p,
+      #epiceditor-preview p {
+        color: #555;
+      }
+
+    </style>
   </head>
     <body>
+      <div id="snippet-iframe">
 
-      <!-- Header with name of user; skipped in embed mode. -->
-      {% if embedded == "false" %}
-      <div class="snippet-header"><p>Showing snippet for user <span class="snippet-header-user">{{username}}@{{domain}}</span></p>
+        <!-- Header with name of user; skipped in embed mode. -->
+        {% if embedded == "false" %}
+        <div class="snippet-header"><p><span class="snippet-header-user">{{username}}@{{domain}}</span>'s Snippet</p>
+        </div>
+        {% endif %}
+        
+        <div id="week-nav" style="width: 400px;">
+          <a class="nav-prev" href="/snippet/{{username}}/{{prev_week}}?embedded={{embedded}}"><i class="fa fa-chevron-left"></i></a>&nbsp;
+          <span class="snippet-header-date">{{start_date}}</span>
+          ⟷
+          <span class="snippet-header-date">{{end_date}}</span>&nbsp;
+          <a class="nav-next" href="/snippet/{{username}}/{{next_week}}?embedded={{embedded}}"><i class="fa fa-chevron-right"></i></a>
+        
+
+        {% if edit %}
+        <form action="/snippet/{{username}}/{{week}}?embedded={{embedded}}" method="POST">
+          <div><textarea style="display:none;" id="snippet_data" name="snippet_data" >{{snippet_content}}</textarea></div>
+          <div style="text-align: center;"><input type="submit" value="Update Your Snippet"></div>
+        </form>
+        {% else %}
+        <div><textarea style="display:none;" id="snippet_data">{{snippet_content}}</textarea></div>
+        {% endif %}
+
       </div>
-      {% endif %}
-      
-      <div id="week-nav" style="width: 400px;">
-        <a class="nav-prev" href="/snippet/{{username}}/{{prev_week}}?embedded={{embedded}}"><i class="fa fa-chevron-left"></i></a>&nbsp;
-        <span class="snippet-header-date">{{start_date}}</span>
-        ⟷
-        <span class="snippet-header-date">{{end_date}}</span>&nbsp;
-        <a class="nav-next" href="/snippet/{{username}}/{{next_week}}?embedded={{embedded}}"><i class="fa fa-chevron-right"></i></a>
-      
 
-      {% if edit %}
-      <form action="/snippet/{{username}}/{{week}}?embedded={{embedded}}" method="POST">
-        <div><textarea style="display:none;" id="snippet_data" name="snippet_data" >{{snippet_content}}</textarea></div>
-        <div style="text-align: center;"><input type="submit" value="Update Your Snippet"></div>
-      </form>
-      {% else %}
-      <div><textarea style="display:none;" id="snippet_data">{{snippet_content}}</textarea></div>
-      {% endif %}
+        <div id="snippet-editor" style="width:400px;"></div>
 
-    </div>
-
-      <div id="snippet-editor" style="width:400px; border: 1px solid;"></div>
-
-      <script>
-        var options = { container: 'snippet-editor',
-          basePath: '/includes/EpicEditor-v0.2.2',
-          clientSideStorage: false,
-          textarea: 'snippet_data',
-          autogrow: false,
-          {% if edit %} button: { fullscreen: false } {% else %} button: false {% endif %}
-        };
-        var editor = new EpicEditor(options).load();
-        editor.preview();
-      </script>
+        <script>
+          var options = { container: 'snippet-editor',
+            basePath: '/includes/EpicEditor-v0.2.2',
+            clientSideStorage: false,
+            textarea: 'snippet_data',
+            autogrow: false,
+            {% if edit %} button: { fullscreen: false } {% else %} button: false {% endif %}
+          };
+          var editor = new EpicEditor(options).load();
+          editor.preview();
+        </script>
+      </div>
     </body>
 </html>

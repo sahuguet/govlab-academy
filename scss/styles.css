@@ -440,3 +440,6 @@ textarea {
     border-top-color: #288218; }
   #library .b-library-item.m-people, #library .b-library-item[data-type="people"] {
     border-top-color: #0d48a9; }
+
+#epiceditor-previewer-frame {
+  border: 1px solid rgba(0, 0, 0, 0.2); }
