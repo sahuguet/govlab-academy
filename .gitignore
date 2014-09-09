@@ -1,2 +1,3 @@
 *.pyc
-*.scssc
+**/.sass-cache
+**/.sass-cache/*
