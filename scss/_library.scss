@@ -87,9 +87,8 @@
 	}
 
 	.b-library-item {
-		// float: left; // trick 
 		width: 275px;
-		// height: 300px;
+		min-height: 300px;
 		border: 1px solid $gray_20;
 		border-top: 3px solid $primary-color;
 		padding: 15px;
@@ -100,12 +99,17 @@
 
 		h3 {
 			margin-top: 0;
+			line-height: 1.2rem;
 		}
 
 		.e-biblio {
 			font-size: .8rem;
 			// overflow: hidden;
 			// height: 80px;
+		}
+
+		.e-library-controls {
+			padding-top: 10px;
 		}
 
 		& .e-library-action {
