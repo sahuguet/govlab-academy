@@ -60,13 +60,21 @@ $('.filter a').click(function(){
 });
 };
 
+
 $(function() {
 		$.get( "library.json", function( data ) {
-			var all_tags = {};
-		$.each(data, function(index, value) {
-			$.each(value['nice-tags'], function(i, v) { all_tags[v] = value['tags'][i]; });
-			addContent(value);
-		});
+    var all_tags = {};
+    $.each(data, function(index, value) {
+      if (value.title.indexOf('\u201c') != -1) {
+        var title_init = value.title.indexOf('\u201c');
+        var title_fin = value.title.indexOf('\u201d');
+
+        value.title = value.title.substring(title_init + 1, title_fin - 1);
+
+        $.each(value['nice-tags'], function(i, v) { all_tags[v] = value['tags'][i]; });
+        addContent(value);
+      }
+    });
 		// We create the right filers.
 		$.each(all_tags, function(k, v) {
 			// console.log(k + " " + v);
@@ -75,6 +83,7 @@ $(function() {
 
 		processContent();
 		
-	});   
+	});
 
+    //...
 });

@@ -1,17 +1,10 @@
 {% extends "templates/base.html" %}
 {% block title %}My Dashboard{% endblock %}
 
-{% block extras_post%}
-<style>
-.e-faq-question { font-weight: bold;}
-.b-content { margin-top: 25px;}
-</style>
-{% endblock %}
-
 {% block content %}
 
 <section class="b-centered b-dashboard-header">
-        <h1>Dashboard</h1>
+        <h1 class="e-page-title">Dashboard</h1>
         <p class="e-username">Welcome {{user.name.givenName}} (<a href="{{logout_url}}">logout</a>)</p>
 </section>
 
@@ -19,37 +12,28 @@
   <h1>Frequently Asked Questions</h1>
   <div class="container">
 
-<div class="b-faq">
-<p class="e-faq-question">How do I access my profile?</p>
- <p class="e-faq-answer">You can access your profile by clicking on the profile icon located in the top right corner of the dashboard. This profile page is editable and will be visible to others who have GovLab Academy accounts.</p>
- <p>Your profile picture is your Google picture; from your GMail at GovLab account, click on your picture and then choose "change photo".</p>
- </div>
+<div class="b-faq b-half">
+  <p class="e-faq-question">How do I access my profile?</p>
+  <p class="e-faq-answer">You can access your profile by clicking on the profile icon located in the top right corner of the dashboard. This profile page is editable and will be visible to others who have GovLab Academy accounts.</p>
+  <p>Your profile picture is your Google picture; from your GMail at GovLab account, click on your picture and then choose "change photo".</p>
 
-<div class="b-faq">
-<p class="e-faq-question">Why should I bother filling out my profile page?</p>
-<p class="e-faq-answer">One of the main purposes of this website is to enable you all to support,  teach, and inspire each other. This profile helps other GovLab participants get an initial sense of who you are and what you are working on.</p>
+  <p class="e-faq-question">Why should I bother filling out my profile page?</p>
+  <p class="e-faq-answer">One of the main purposes of this website is to enable you all to support,  teach, and inspire each other. This profile helps other GovLab participants get an initial sense of who you are and what you are working on.</p>
+
+  <p class="e-faq-question">How do I see who else is participating in this course?</p>
+  <p class="e-faq-answer">Click on “Fall 2014 Class” in the top menu bar so see the current course directory.</p>
 </div>
 
-<div class="b-faq"> 
-<p class="e-faq-question">How do I see who else is participating in this course?</p>
- <p class="e-faq-answer">Click on “Fall 2014 Class” in the top menu bar so see the current course directory.</p>
-</div>
+<div class="b-faq b-half m-right">
+  <p class="e-faq-question">How do I contact others?</p>
+  <p class="e-faq-answer">Your GovLab email address will be hyperlinked to your name in the “Fall 2014 Class” page once you’ve claimed your GovLab account.  People who have claimed their accounts will be able to email with each other.</p>
+  <p>Additionally, at the top of the “fall 2014 Class”  page, we’ve listed email addresses if you want to send out a message to groups within this course.</p>
 
-<div class="b-faq">
-<p class="e-faq-question">How do I contact others?</p>
- <p class="e-faq-answer">Your GovLab email address will be hyperlinked to your name in the “Fall 2014 Class” page once you’ve claimed your GovLab account.  People who have claimed their accounts will be able to email with each other.</p>
- <p>Additionally, at the top of the “fall 2014 Class”  page, we’ve listed email addresses if you want to send out a message to groups within this course.</p>
-</div>
+  <p class="e-faq-question">How do I give feedback about the site?</p>
+  <p class="e-faq-answer">The is a feedback tab on the bottom right corner of each page. If you want to exit the feedback tab, hit ESC.</p>
 
-<div class="b-faq">
- <p class="e-faq-question">How do I give feedback about the site?</p>
- <p class="e-faq-answer">The is a feedback tab on the bottom right corner of each page. If you want to exit the feedback tab, hit ESC.</p>
-</div>
-
-<div class="b-faq">
-<p class="e-faq-question">What is a ‘Snippet?”</p>
-<p class="e-faq-answer">A snippet is short piece of text where you write down what you did last week and what they plan to do in the upcoming weeks. This is for you to keep track of your progress; this is for others to see what you are up to. See <a target="__new__" href="http://blog.idonethis.com/why-google-snippets/">here</a> and <a target="__new__" href="http://blog.idonethis.com/silicon-valleys-productivity-secret/">here</a> for more info about the origin of snippets.</p>
-</div>
+  <p class="e-faq-question">What is a ‘Snippet?”</p>
+  <p class="e-faq-answer">A snippet is short piece of text where you write down what you did last week and what they plan to do in the upcoming weeks. This is for you to keep track of your progress; this is for others to see what you are up to. See <a target="__new__" href="http://blog.idonethis.com/why-google-snippets/">here</a> and <a target="__new__" href="http://blog.idonethis.com/silicon-valleys-productivity-secret/">here</a> for more info about the origin of snippets.</p>
 </div>
 </section>
 
@@ -91,7 +75,7 @@
     <section class="b-centered b-content">
       <div class="b-half">
           <h1>My weekly snippet</h1>
-          <div class="e-half-content">
+          <div id="b-snippets" class="e-half-content">
           	<iframe src="http://academy.thegovlab.org/snippet/?embedded=true" height="400px" frameborder="0" width="100%"></iframe>
           </div>
           
