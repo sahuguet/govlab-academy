@@ -36,8 +36,8 @@
 <section class="b-centered b-content">
 <h1>Team</h1>
 <ul>
-{% for member in project.members %}
-<li>{{member}} {% endfor %}</li>
+{% for member in members %}
+<li><a href="/profile?user_email={{member.id}}">{{member.fullName}}</a>{% endfor %}</li>
 </ul>
 </section>
 

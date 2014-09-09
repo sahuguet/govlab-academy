@@ -10,6 +10,7 @@ from oauth2client.client import SignedJwtAssertionCredentials
 import jinja2
 import webapp2
 from google.appengine.api import users
+from google.appengine.api import memcache
 
 if os.environ['SERVER_SOFTWARE'].startswith('Development'):
 	import account_services_dev as govlab
@@ -35,6 +36,27 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
   extensions=['jinja2.ext.autoescape'],
   autoescape=True)
+
+def getUserMapping():
+	logging.info('Inside getUserMapping().')
+	userMapping = memcache.get('__USER_MAPPING__')
+	if userMapping is not None:
+		logging.info('Info in memcache')
+		return userMapping
+	else:
+		logging.info('populating memcache')
+		credentials = SignedJwtAssertionCredentials(SERVICE_ACCOUNT_EMAIL,
+				key,
+				scope=DIRECTORY_SCOPES,
+				sub=USER_DELEGATION)
+		http = httplib2.Http()
+		http = credentials.authorize(http)
+		service = build('admin', 'directory_v1', http=http)
+		userMapping = {}
+		for user in service.users().list(domain='thegovlab.org', maxResults=500, orderBy='familyName').execute()['users']:
+			userMapping[user['primaryEmail']] = user['name']['fullName']
+		memcache.add('__USER_MAPPING__', userMapping)
+		return userMapping
 
 def getUserProfile(userid):
 	credentials = SignedJwtAssertionCredentials(SERVICE_ACCOUNT_EMAIL,

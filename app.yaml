@@ -1,5 +1,5 @@
 application: govlabacademy
-version: 1
+version: 1dev
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -9,6 +9,7 @@ builtins:
 
 skip_files:
 - ^(.*/)?\.scss$
+- ^(.*/)?\.scssc$
 
 handlers:
 - url: /favicon\.ico

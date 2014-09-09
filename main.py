@@ -15,10 +15,13 @@ from model import UserProject
 
 import json
 
+USER_MAPPING = govlab.getUserMapping()
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+JINJA_ENVIRONMENT.filters['id2name'] = lambda x: USER_MAPPING.setdefault(x+'@thegovlab.org', x)
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self, page):
@@ -108,6 +111,9 @@ class AllProjectsHandler(webapp2.RequestHandler):
 
 class ProjectHandler(webapp2.RequestHandler):
 	def get(self, project_id):
+		USER_MAPPING = govlab.getUserMapping()
+		logging.info("User Mapping:")
+		logging.info(USER_MAPPING)
 		user = users.get_current_user()
 		me = govlab.getUserProfile(user.email())
 		project = UserProject.get_by_id(project_id)
@@ -122,9 +128,12 @@ class ProjectHandler(webapp2.RequestHandler):
 			readonly = False
 		logging.info("readonly: %s" % readonly)
 		page_template = JINJA_ENVIRONMENT.get_template('templates/project.html')
+		members = [ { 'id': k+'@thegovlab.org', 'fullName': USER_MAPPING[k+'@thegovlab.org'] } for k in project.members]
+		logging.info(members)
 		self.response.out.write(page_template.render({
 			'project': project,
 			'readonly': readonly,
+			'members': members,
 			'me': me }))
 
 	def post(self, project_id):
