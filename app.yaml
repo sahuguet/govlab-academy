@@ -37,6 +37,10 @@ handlers:
   static_files: library.json
   upload: library.json
 
+- url: /test_group.html
+  static_files: test_group.html
+  upload: test_group.html
+
 - url: /fall-2014-class
   script: account_services.app
   login: required

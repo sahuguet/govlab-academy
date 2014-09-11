@@ -10,11 +10,11 @@ function addContent(item) {
 	*/
 
 	var actionMap = { 'video': 'Watch', 'document': 'Read', 'expert': 'Connect'};
-	var gl_item = $(sprintf('<div class="b-library-item" data-type="%(type)s" data-topic="%(topic)s">\
+	var gl_item = $(sprintf('<div class="b-library-item" data-week="%(week)s" data-type="%(type)s" data-topic="%(topic)s">\
  <h3>%(title)s</h3>\
 <p>%(description)s</p>\
 <div class="e-library-controls"><a class="e-library-action" href="%(url)s">%(action)s</a></div>\
-</div>', { 'type': item['content_type'], 'topic': item['nice-tags'].join(' '), 'title': item['title'], 'description': item['description'], 'url': item['url'], 'action': actionMap[item['content_type']]}));
+</div>', { 'type': item['content_type'], 'week': item['week'], 'topic': item['nice-tags'].join(' '), 'title': item['title'], 'description': item['description'], 'url': item['url'], 'action': actionMap[item['content_type']]}));
 	$('#container').append(gl_item);
 } // addContent()
 
@@ -70,10 +70,9 @@ $(function() {
         var title_fin = value.title.indexOf('\u201d');
 
         value.title = value.title.substring(title_init + 1, title_fin - 1);
-
+      }
         $.each(value['nice-tags'], function(i, v) { all_tags[v] = value['tags'][i]; });
         addContent(value);
-      }
     });
 		// We create the right filers.
 		$.each(all_tags, function(k, v) {

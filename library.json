@@ -1,5 +1,14 @@
 [
   {
+    "description": "Terry Winograd, Professor Emeritus of Computer Science, Stanford University. Professor Winograd's focus is on human-computer interaction design and the design of technologies for development.", 
+    "tags": [], 
+    "url": "http://files.thegovlab.org/academy/fall2014/presentations/noveck-class.ppt", 
+    "title": "Design thinking for public problems", 
+    "content_type": "document", 
+    "nice-tags": [],
+    "week": "1"
+  },
+  {
     "description": "Functional PHP doc", 
     "tags": [], 
     "url": "http://not-really.com/funcs.pdf", 
@@ -2135,7 +2144,7 @@
       "Linked Data"
     ], 
     "url": "http://vimeo.com/61612182", 
-    "title": "EUCLID project on \u201cWhat is linked data? ", 
+    "title": "EUCLID project on 'What is linked data?' ", 
     "content_type": "video", 
     "nice-tags": [
       "linked-data"
