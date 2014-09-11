@@ -150,6 +150,7 @@ class ProjectHandler(webapp2.RequestHandler):
 		project_description = self.request.get('description')
 		project.title = project_title
 		project.description = project_description
+		project.blogURL = self.request.get('blogURL')
 		project.put()
 		self.redirect('/project/%s' % project.shortName)
 

@@ -20,6 +20,7 @@ class UserProject(ndb.Model):
 	members = ndb.StringProperty(repeated=True)
 	publicFolder = ndb.StringProperty()
 	teamFolder = ndb.StringProperty()
+	blogURL = ndb.StringProperty()
 
 	def getTeamGroup(self):
 		"""Returns the name of the Google Group for team members of this project."""

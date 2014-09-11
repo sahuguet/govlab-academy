@@ -1,12 +1,22 @@
 {% extends "templates/base.html" %}
 {% block title %}My Dashboard{% endblock %}
 
+{% block extras_post %}
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{%endblock %}
+
 {% block content %}
 
 <section class="b-centered b-dashboard-header">
-        <h1 class="e-page-title">Dashboard</h1>
-        <p class="e-username">Welcome {{user.name.givenName}} (<a href="{{logout_url}}">logout</a>)</p>
+  <h1 class="e-page-title">Dashboard</h1>
+  <p class="e-username">Welcome {{user.name.givenName}} (<a href="{{logout_url}}">logout</a>)</p>
 </section>
+
+<section class="b-centered b-dashboard-header">
+  <h1 class="e-page-title">This week at a glance</h1>
+  {% include 'templates/this_week.html' %}
+</section>
+
 
 <section class="b-centered b-content">
   <h1>Frequently Asked Questions</h1>
