@@ -1,0 +1,149 @@
+{% extends "templates/base.html" %}
+{% block title %}The GovLab Academy{% endblock %}
+{% block extras_pre %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="b-centered b-content b-canvas-page">
+	<h1>The GovLab Public Problem Solving Canvas</h1>
+  <p class="e-intro">Informed by a wide range of private sector business planning methods, the GovLab Public Problem Solving Canvas outlines 20 questions to be answered to the end of developing an actionable social change project. These questions can roughly be grouped into the five stages typical for any human-centered design project (understand, observe, point of view, ideate, prototype), which attempts to combine an understanding of the problem to be tackled backed up by empirical research and observation. However, unlike designing a widget, where the designer must consider the customer and the competition, designing an effective social and policy intervention requires a more extensive consideration of myriad institutions and actors working in the space and their interests.</p>
+
+  <p>Provide concise answers. Not all answers but your most current thinking as to the most likely answer</p>
+  <form class="b-canvas-form" action="/profile" METHOD="POST">
+    <div class="b-form-section m-orange">
+      <h2 class="e-canvas-section-title">Understand</h2>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-1">The problem I am tackling is…<br>
+        <span class="e-canvas-helper">What is the need?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-1" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question" for="canvas-question-2">The people most impacted by this problem are…<br>
+        <span class="e-canvas-helper">Who is harmed?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-2" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-3">I believe the major causes of this problem are…<br>
+        <span class="e-canvas-helper">What are the causes?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-3" id=""></textarea>
+      </div>
+    </div>
+    
+    <div class="b-form-section m-green">
+      <h2 class="e-canvas-section-title">Observe</h2>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-4">I believe this because…<br>
+        <span class="e-canvas-helper">What is the evidence? Also who can you interview? What can you find out? What experiment can you run?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-4" id=""></textarea>
+      </div>
+    </div>
+
+    <div class="b-form-section m-red">
+      <h2 class="e-canvas-section-title">Point of View</h2>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-5">The problem can be improved by…<br>
+        <span class="e-canvas-helper">What is The Big Idea? What is the value proposition?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-5" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question" for="canvas-question-6">This approach will have an impact because…<br>
+        <span class="e-canvas-helper">What is the mechanism of beneficial change?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-6" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-7">The impact will be measurable because…<br>
+        <span class="e-canvas-helper">Key metrics?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-7" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question" for="canvas-question-8">Those with the greatest interest in change are…<br>
+        <span class="e-canvas-helper">Key supporters? Segments?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-8" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-9">Those most opposed to change are…<br>
+        <span class="e-canvas-helper">Key foes?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-9" id=""></textarea>
+      </div>
+    </div>
+
+    <div class="b-form-section m-purple">
+      <h2 class="e-canvas-section-title">Ideate</h2>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-10">The way it will work is…<br>
+        <span class="e-canvas-helper">What is the user experience?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-10" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question" for="canvas-question-11">To make this happen, these changes need to occur…<br>
+        <span class="e-canvas-helper">Who Has to Do What To Make It Happen?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-11" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question m-long-question" for="canvas-question-12">To undertake my big idea, I could work with…<br>
+        <span class="e-canvas-helper">Key partners to execute? Key partners to help others evaluate your value proposition?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-12" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question m-long-question" for="canvas-question-13">The reason to do this now is…<br>
+        <span class="e-canvas-helper">What are the precipitating events?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-13" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-14">Others working in this space include…<br>
+        <span class="e-canvas-helper">Who else is in the field?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-14" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question" for="canvas-question-15">My approach is better because…<br>
+        <span class="e-canvas-helper">What's wrong? Missing? Not working?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-15" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question" for="canvas-question-16">Key resources (besides financial ones) I will need to be successful…<br>
+        <span class="e-canvas-helper">Physical, human and intellectual resources?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-16" id=""></textarea>
+      </div>
+    </div>
+
+    <div class="b-form-section m-blue">
+      <h2 class="e-canvas-section-title">Prototype and Test</h2>
+      <div class="b-half">
+        <label class="e-canvas-question m-long-question" for="canvas-question-17">My strategy for rolling out this project involves the following key activities...<br>
+        <span class="e-canvas-helper">Next steps? Pilots?</span></label>
+        <textarea class="e-canvas-answer " name="canvas-question-17" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question m-long-question" for="canvas-question-18">I will sustain this project by…<br>
+        <span class="e-canvas-helper">Cost Structure? Financial Sustainability? Revenue Streams?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-18" id=""></textarea>
+      </div>
+      <div class="b-half">
+        <label class="e-canvas-question m-long-question" for="canvas-question-19">My biggest risk is…<br>
+        <span class="e-canvas-helper">How might this go wrong? How might the problem evolve? What are the legal, cultural and other impediments?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-19" id=""></textarea>
+      </div>
+      <div class="b-half m-right">
+        <label class="e-canvas-question m-long-question" for="canvas-question-20">I will raise awareness about my project by…<br>
+        <span class="e-canvas-helper">How will I promote adoption?</span></label>
+        <textarea class="e-canvas-answer" name="canvas-question-20" id=""></textarea>
+      </div>
+    </div>  
+
+    <div class="b-form-section m-orange b-pixar-pitch">
+      <h2 class="e-canvas-section-title">Do the Pixar Pitch</h2>
+      <label for="">Once upon a time <input class="e-pixar-answer" type="text"></label>
+      <label for="">Every day, <input class="e-pixar-answer" type="text"></label>
+      <label for="">One day <input class="e-pixar-answer" type="text"></label>
+      <label for="">Because of that, <input class="e-pixar-answer" type="text"></label>
+      <label for="">Until finally <input class="e-pixar-answer" type="text"></label>
+    </div>
+
+    <div class="b-form-section b-submit-panel">
+        <button type="submit" class="b-button">Update Canvas</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
