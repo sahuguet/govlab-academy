@@ -1,0 +1,107 @@
+.b-canvas-page {
+	h1 {
+		margin-bottom: 20px;
+	}
+
+	.e-intro {
+	}
+}
+
+.b-canvas-form {
+	.b-form-section {
+		padding: 20px;
+		border: 1px solid $gray_20;
+		overflow: hidden;
+		margin-top: 20px;
+
+		&.m-orange { 
+			border-top: 3px solid $primary-color;
+			.e-canvas-section-title { color: $primary-color;}
+			}
+
+		&.m-blue { 
+			border-top: 3px solid $blue;
+			.e-canvas-section-title { color: $blue;}
+			}
+
+		&.m-green { 
+			border-top: 3px solid $green;
+			.e-canvas-section-title { color: $green;}
+			}
+
+		&.m-red { 
+			border-top: 3px solid $red;
+			.e-canvas-section-title { color: $red;}
+			}
+
+		&.m-purple { 
+			border-top: 3px solid $purple;
+			.e-canvas-section-title { color: $purple;}
+			}
+	}
+
+	.b-half {
+		width: 47.8%;
+		margin-bottom: 30px;
+		vertical-align: bottom;
+	}
+}
+
+.e-canvas-section-title {
+	font-weight: 100;
+	font-size: 2rem;
+	margin-top: 0;
+	margin-bottom: 40px;
+}
+
+.e-canvas-question {
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.2rem;
+
+	&.m-long-question {
+		min-height: 80px;
+	}
+}
+
+.e-canvas-helper {
+	font-size: .8rem;
+	line-height: 1rem;
+	font-style: italic;
+	color: $gray_60;
+}
+
+.e-canvas-answer {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid $gray_20;
+
+	&:focus {
+		outline: 0;
+	}
+
+	&:hover {
+		border-color: $gray_40;
+	}
+}
+
+.b-pixar-pitch {
+	label {
+		display: inline-block;
+	}
+
+	.e-pixar-answer {
+		border: 0;
+		border-bottom: 1px solid $gray_20;
+		width: 400px;
+		margin-left: 15px;
+		font-size: 16px;
+		font-family: sans-serif;
+		padding: 5px;
+
+	}
+}
+
+.b-submit-panel {
+	text-align: right;
+}

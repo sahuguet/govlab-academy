@@ -5,6 +5,7 @@ $gray_60: rgba(0,0,0,0.6);
 $gray_40: rgba(0,0,0,0.4);
 $gray_20: rgba(0,0,0,0.2);
 $gray_10: rgba(0,0,0,0.1);
+$gray_01: rgba(0,0,0,0.01);
 $white: white;
 $white_10: rgba(255, 255, 255, 0.1);
 $white_20: rgba(255, 255, 255, 0.2);
@@ -14,6 +15,7 @@ $white_80: rgba(255, 255, 255, 0.8);
 $green: rgba(40, 130, 24, 1);
 $red: rgba(173, 13, 45, 1);
 $blue: rgba(13, 72, 169, 1);
+$purple: #503281;
 
 $main-font: 'proxima-nova', 'Helvetica Neue', Healvetica, Arial, sans-serif;
 
@@ -39,5 +41,6 @@ $main-font: 'proxima-nova', 'Helvetica Neue', Healvetica, Arial, sans-serif;
 @import "desktop";
 @import "dashboard";
 @import "library";
+@import "canvas";
 
 #epiceditor-previewer-frame {border: 1px solid $gray_20;}

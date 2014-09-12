@@ -155,7 +155,7 @@ class ProjectHandler(webapp2.RequestHandler):
 		self.redirect('/project/%s' % project.shortName)
 
 app = webapp2.WSGIApplication([
-	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
+	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library|canvas)?>', MainHandler),
 #	('/invite', InvitationHandler),
 #	('/addUser', AddUserHandler),
 	('/profile', UserProfileHandler),
