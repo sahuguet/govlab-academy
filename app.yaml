@@ -1,5 +1,5 @@
 application: govlabacademy
-version: 1
+version: 1dev
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -56,6 +56,10 @@ handlers:
   script: feedback.app
 
 - url: /profile
+  script: main.app
+  login: required
+
+- url: /canvas
   script: main.app
   login: required
 

@@ -105,7 +105,7 @@ input:focus, textarea:focus, sleect:focus, .form-control:focus {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) !important; }
 
 textarea {
-  min-height: 200px; }
+  min-height: 6em; }
 
 .b-form-section {
   display: block;

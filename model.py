@@ -29,3 +29,16 @@ class UserProject(ndb.Model):
 	def getDiscussGroup(self):
 		"""Returns the name of the Google Group for discussion on this project."""
 		return "proj-%s-discuss"
+
+class ProjectCanvas(ndb.Model):
+	"""NDB model for the project canvas.
+		Still not clear if this per user of per project.
+		Also, might need a time component to it; one canvas per week.
+		TODO (arnaud): figure out which is which.
+	"""
+	content = ndb.TextProperty()
+
+	# We define the fields: canvas_question_[1-20] and pixar_[1-5]
+	@staticmethod
+	def getFields():
+		return [ "canvas_question_%d" % k for k in range(1,21)] + [ "pixar_%d" % k for k in range(1,6) ]

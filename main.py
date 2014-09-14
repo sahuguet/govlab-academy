@@ -12,6 +12,7 @@ from google.appengine.api import users
 
 from model import UserProfile
 from model import UserProject
+from model import ProjectCanvas
 
 import json
 
@@ -154,11 +155,38 @@ class ProjectHandler(webapp2.RequestHandler):
 		project.put()
 		self.redirect('/project/%s' % project.shortName)
 
+class CanvasHandler(webapp2.RequestHandler):
+	def get(self):
+		user = users.get_current_user()
+		me = govlab.getUserProfile(user.email())
+		canvas = ProjectCanvas.get_by_id(user.email())
+		logging.info(canvas)
+		page_template = JINJA_ENVIRONMENT.get_template('templates/canvas.html')
+		canvas_data = {}
+		if canvas:
+			canvas_data = json.loads(canvas.content)
+		self.response.out.write(page_template.render({'me': me, 'canvas': canvas_data}))
+
+	def post(self):
+		user = users.get_current_user()
+		me = govlab.getUserProfile(user.email())
+		canvas = ProjectCanvas.get_by_id(user.email())
+		canvas_content = {}
+		for field in ProjectCanvas.getFields(): # we extract all the fields from the form.
+			canvas_content[field] = self.request.get(field)
+		if canvas:
+			canvas.content = json.dumps(canvas_content)
+		else:
+			canvas = ProjectCanvas(id=user.email(), content=json.dumps(canvas_content))
+		canvas.put()
+		self.redirect('/canvas')
+
 app = webapp2.WSGIApplication([
-	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library|canvas)?>', MainHandler),
+	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
 #	('/invite', InvitationHandler),
 #	('/addUser', AddUserHandler),
 	('/profile', UserProfileHandler),
 	('/project/([a-z0-9_-]+)', ProjectHandler),
-	('/projects', AllProjectsHandler)
+	('/projects', AllProjectsHandler),
+	('/canvas', CanvasHandler),
 ], debug=True)
