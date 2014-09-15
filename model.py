@@ -2,8 +2,19 @@ from google.appengine.ext import ndb
 
 class UserProfile(ndb.Model):
 	"""Models the profile (JSON) of an individual user."""
+	# email is the key for each user.
 	profile = ndb.TextProperty()
+	fname = ndb.StringProperty(required=True)
+	lname = ndb.StringProperty(required=True)
+	affiliation = ndb.StringProperty(required=True) # e.g. NYU, MIT, online, govlab.
+	photoUrl = ndb.StringProperty()
 	date = ndb.DateTimeProperty(auto_now_add=True)
+
+	@staticmethod
+	def getFields():
+		return [ 'city_state', 'country',
+		'facebook', 'twitter', 'github', 'linkedin',
+		'year_experience', 'sector_experience', 'expertise', 'experience', 'offer', 'demand' ]
 
 class UserSnippet(ndb.Model):
 	"""NDB model for a user weekly snippet.

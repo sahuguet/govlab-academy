@@ -21,9 +21,10 @@ def auth_func():
 	return ('arnaud@thegovlab.org', password)
 
 remote_api_stub.ConfigureRemoteApi(None, '/_ah/remote_api', auth_func,
-	#'govlab-dev.appspot.com')
- 	'govlabacademy.appspot.com')
-  #'govlabacademy2.appspot.com')
+	#'govlab-dev.appspot.com',
+ 	# 'govlabacademy.appspot.com',
+  'govlabacademy2.appspot.com'
+  )
 
 def sendInvite(fname, username, user_email):
 	print >> sys.stderr, "Hi %s, new account = % s; message sent to %s" % (fname, username, user_email)
@@ -114,7 +115,7 @@ def populateTestProject():
 		shortName="govlab-academy",
 		title="The GovLab Academy",
 		description="An online learning platform for change agents and civic innovators",
-		members=['arnaud', 'nikki', 'lisbeth', 'noveck', 'alan'])
+		members=map(lambda x: "%s@thegovlab.org" %x, ['arnaud', 'nikki', 'lisbeth', 'noveck', 'alan']))
 	project.put()
 	print >> sys.stderr, "Project added."
 
@@ -161,4 +162,30 @@ def populateProjects():
 		project.put()
 	print >> sys.stderr, "Project added."
 """
-populateTestProject()
+#populateTestProject()
+
+def checkUser(email):
+	return UserProfile.get_by_id(email) != None
+
+#createNewUser('Arnaud', 'Sahuguet', 'arnaud.sahuguet@gmail.com', 'GovLab')
+#print checkUser('arnaud.sahuguet@gmail.com')
+#print checkUser('arnaud.sahuguet2@gmail.com')
+from domain_services import *
+#createNewUser('Lisbeth', 'Salander', 'lisbeth@thegovlab.org', 'NYU')
+#createNewUser('Arnaud', 'Sahuguet', 'arnaud@thegovlab.org', 'GovLab')
+#createNewUser('Arnaud', 'Sahuguet', 'arnaud.sahuguet@gmail.com', 'MIT')
+#createNewUser('Mikael', 'Blomkvist', 'mikael@thegovlab.org', 'MIT')
+
+#print getUsersMapping()
+
+#for user in UserProfile.query().order(UserProfile.lname, UserProfile.fname).fetch(limit=500):
+#	print user
+#	print type(user) is UserProfile
+#populateTestProject()
+
+createNewUser('Nikki', 'Zeichner', 'nikzei@gmail.com', 'NYU')
+createNewUser('Nikki', 'Zeichner', 'nikki@thegovlab.org', 'GovLab')
+createNewUser('Lauren', 'Yu', 'lauren.r.yu@gmail.com', 'NYU')
+createNewUser('Lauren', 'Yu', 'lauren@thegovlab.org', 'GovLab')
+
+

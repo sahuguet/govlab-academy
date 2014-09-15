@@ -10,10 +10,10 @@
 {%endblock %}
 
 {% macro student(user) -%}
-    <li><img class="avatar" alt="{{user.name.fullName}}" src="{{user.thumbnailPhotoUrl|default('assets/silhouette200.png')}}"/>
+    <li><img class="avatar" alt="{{user|fullName}}" src="{{user.photoUrl|defaultPicture}}"/>
     	{% if user.lastLoginTime != '1970-01-01T00:00:00.000Z' %}
-    	<a href="/profile?user_email={{user.primaryEmail}}">{{user.name.fullName}}</a>
-    	<a href="mailto:{{user.primaryEmail}}"><i class="fa fa-paper-plane"></i></a>
+    	<a href="/profile?user_email={{user|primaryEmail}}">{{user|fullName}}</a>
+    	<a href="mailto:{{user|primaryEmail}}"><i class="fa fa-paper-plane"></i></a>
     	{% else %}
     	{{user.name.fullName}}
     	{% endif %}
