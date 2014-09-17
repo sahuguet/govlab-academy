@@ -50,7 +50,7 @@ def getUsersMapping():
 		#{
 		#'fname': u.fname, 'lname': u.lname,
 		#'photoURL': u.photoUrl, 'affiliation': u.affiliation }
-	memcache.add(USER_MAPPING, users_mapping)
+	memcache.add(USER_MAPPING_MEMCACHE_KEY, users_mapping)
 	USER_MAPPING = users_mapping
 	logging.info(users_mapping)
 	return users_mapping

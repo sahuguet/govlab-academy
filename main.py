@@ -27,6 +27,7 @@ def login_required(handler_method):
       self.redirect(users.create_login_url(self.request.uri))
       return
     elif invalidUser(user.email()):
+    	logging.error(user.email())
     	self.abort(403)
     else:
       handler_method(self, *args)
@@ -48,11 +49,12 @@ class MainHandler(webapp2.RequestHandler):
 		user_profile = None
 		isInvalidUser = False
 		if user and invalidUser(user.email()) and user.email().split('@')[1] == 'thegovlab.org':
+			logging.error(user.email())
 			self.response.out.write("""
 <html><body><h1>Hey class sudent,</h1>
 <p>We have made some changes to the website.</p>
 <p>You don't need a @thegovlab.org account anymore. You can use your regular email.</p>
-<p>You should <a href="%s">logout</a> and then visit the <a href="http://academy.thegovlab.org">site</a> again with your new @thegovlab.org identity.</p>
+<p>You should <a href="%s">logout</a> and then visit the <a href="http://academy.thegovlab.org">site</a> again with your non @thegovlab.org identity.</p>
 <p>If it still does not work or you are confused, contact us.</p>
 </body>
 </html>

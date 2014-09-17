@@ -359,8 +359,19 @@ for p in UserProject.query().fetch(limit=500):
 	p.members = map( lambda x: x.lower(), members)
 	p.put()
 """
+"""
 createNewUser('Lisbeth', 'Salander', 'lisbeth@thegovlab.org', 'NYU')
 createNewUser('Arnaud', 'Sahuguet', 'arnaud@thegovlab.org', 'online')
 createNewUser('Mikael', 'Blomkvist', 'mikael@thegovlab.org', 'MIT')
 project = UserProject(title='The GovLab Academy', description='On-line learning for civic innovators', members=['arnaud@thegovlab.org', 'lisbeth@thegovlab.org', 'mikael@thegovlab.org'])
 project.put()
+"""
+
+#createNewUser('Pedro', 'Prieto Martin', 'hcprieto@gmail.com', 'online')
+#project = UserProject(title='crowdsourced civic open data', description='TBD', members=['hcprieto@gmail.com'])
+#project.put()
+old_user = UserProfile.get_by_id('pedro.prieto-martin@kyopol.net')
+new_user = UserProfile.get_by_id('hcprieto@gmail.com')
+new_user.profile = old_user.profile
+new_user.put()
+
