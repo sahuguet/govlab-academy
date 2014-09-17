@@ -25,7 +25,7 @@ class UserSnippet(ndb.Model):
 
 class UserProject(ndb.Model):
 	"""NDB model for a project."""
-	shortName = ndb.StringProperty(required=True)
+	#shortName = ndb.StringProperty(required=True)
 	title = ndb.StringProperty(required=False)
 	description = ndb.TextProperty(indexed=True, required=True)
 	members = ndb.StringProperty(repeated=True)

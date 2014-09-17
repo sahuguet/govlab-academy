@@ -27,12 +27,20 @@ def invalidUser(email):
 def validUser(email):
 	return getUserProfile(email) != None
 
+USER_MAPPING = None
 def getUsersMapping():
-	"""Returns a dictionary: email -> { fname, lname, photo, affiliation } """
-	USER_MAPPING = '__USER_MAPPING__'
-	__user_mapping__ = memcache.get(USER_MAPPING)
+	"""Returns a dictionary: email -> { fname, lname, photo, affiliation }.
+	- level 1 caching = global variable.
+	- level 2 caching = memcache
+	"""
+	USER_MAPPING_MEMCACHE_KEY = '__USER_MAPPING__'
+	global USER_MAPPING
+	if USER_MAPPING:
+		return USER_MAPPING
+	__user_mapping__ = memcache.get(USER_MAPPING_MEMCACHE_KEY)
 	if __user_mapping__:
 		logging.info('USER_MAPPING already set.')
+		USER_MAPPING = __user_mapping__
 		return __user_mapping__
 	logging.info('Building USER_MAPPING.')
 	all_users = UserProfile.query().fetch(limit=500)
@@ -43,6 +51,7 @@ def getUsersMapping():
 		#'fname': u.fname, 'lname': u.lname,
 		#'photoURL': u.photoUrl, 'affiliation': u.affiliation }
 	memcache.add(USER_MAPPING, users_mapping)
+	USER_MAPPING = users_mapping
 	logging.info(users_mapping)
 	return users_mapping
 
@@ -68,6 +77,7 @@ JINJA_ENVIRONMENT.filters['affiliation'] = lambda x: "%s" % x.affiliation if typ
 JINJA_ENVIRONMENT.filters['photoUrl'] = lambda x: x.photoUrl
 JINJA_ENVIRONMENT.filters['defaultPicture'] = lambda x: x if x or x!=None else '/assets/silhouette200.png'
 JINJA_ENVIRONMENT.filters['primaryEmail'] = lambda x: x.key.id()
+JINJA_ENVIRONMENT.filters['projectId'] = lambda x: x.key.id()
 
 get_template = JINJA_ENVIRONMENT.get_template
 
