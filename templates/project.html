@@ -11,7 +11,7 @@
 
 {% block content %}
 
-<form action="/project/{{project.shortName}}" METHOD="POST">
+<form action="/project/{{project|projectId}}" METHOD="POST">
 
 <section class="b-centered b-content">
 	<h1>Project Name</h1>
@@ -42,7 +42,7 @@
 <h1>Team</h1>
 <ul>
 {% for member in members %}
-<li><a href="/profile?user_email={{member.id}}">{{member.fullName}}</a>{% endfor %}</li>
+<li><a href="/profile?user_email={{member}}">{{member|getProfile|fullName}}</a> ({{member|getProfile|affiliation}}){% endfor %}</li>
 </ul>
 </section>
 

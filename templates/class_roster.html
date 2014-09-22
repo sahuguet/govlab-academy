@@ -10,10 +10,10 @@
 {%endblock %}
 
 {% macro student(user) -%}
-    <li><img class="avatar" alt="{{user.name.fullName}}" src="{{user.thumbnailPhotoUrl|default('assets/silhouette200.png')}}"/>
+    <li><img class="avatar" alt="{{user|fullName}}" src="{{user.photoUrl|defaultPicture}}"/>
     	{% if user.lastLoginTime != '1970-01-01T00:00:00.000Z' %}
-    	<a href="/profile?user_email={{user.primaryEmail}}">{{user.name.fullName}}</a>
-    	<a href="mailto:{{user.primaryEmail}}"><i class="fa fa-paper-plane"></i></a>
+    	<a href="/profile?user_email={{user|primaryEmail}}">{{user|fullName}}</a>
+    	<a href="mailto:{{user|primaryEmail}}"><i class="fa fa-paper-plane"></i></a>
     	{% else %}
     	{{user.name.fullName}}
     	{% endif %}
@@ -23,14 +23,9 @@
 {% block content %}
 
 <section class="b-centered b-content">
-	<h1>Solving Public Problems with Technology (SPPWT) mailing lists</h1>
+	<h1>Mailing lists</h1>
 	<ul>
-		<li><a href="https://groups.google.com/a/thegovlab.org/forum/#!forum/sppwt-fall-2014-all">sppwt-fall-2014-all@thegovlab.org</a> (everyone in the class)</li>
-		<li><a href="https://groups.google.com/a/thegovlab.org/forum/#!forum/sppwt-fall-2014-mit">sppwt-fall-2014-mit@thegovlab.org</a> (everyone from MIT location)</li>
-		<li><a href="https://groups.google.com/a/thegovlab.org/forum/#!forum/sppwt-fall-2014-nyu">sppwt-fall-2014-nyu@thegovlab.org</a> (everyone from NYU location)</li>
-	<li><a href="https://groups.google.com/a/thegovlab.org/forum/#!forum/sppwt-fall-2014-online">sppwt-fall-2014-online@thegovlab.org</a> (everyone on-line)</li>
-	
-	<p>You should be already subscribed to the one relevant for you.</p>
+		<li><a href="https://groups.google.com/a/thegovlab.org/forum/#!forum/sppwt-f2014-class">sppwt-f2014-class@thegovlab.org</a> (everyone in the class)</li>
 
 </section>
 

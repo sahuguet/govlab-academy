@@ -19,8 +19,15 @@ else:
 
 from apiclient.errors import HttpError
 
+logging.info("AppId: " + os.environ['APPLICATION_ID'])
+
+SERVICE_ACCOUNTS = {
+	's~govlabacademy2': '56603619214-lfu9ipb0p4ba1k3hru846rf4gmp41vjh@developer.gserviceaccount.com',
+	's~govlab-academy': '436251601698-nt1t0h4avvi0hu5udap80e0mrn3nl56d@developer.gserviceaccount.com'
+}
+
 # Email of the Service Account.
-SERVICE_ACCOUNT_EMAIL = '436251601698-nt1t0h4avvi0hu5udap80e0mrn3nl56d@developer.gserviceaccount.com'
+SERVICE_ACCOUNT_EMAIL = SERVICE_ACCOUNTS[os.environ['APPLICATION_ID']]
 # Path to the Service Account's Private Key file.
 SERVICE_ACCOUNT_PKCS12_FILE_PATH = '__SECRETS__/govlabacademy.pem' # AppEngine only understand .pem.
 

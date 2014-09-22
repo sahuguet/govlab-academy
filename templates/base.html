@@ -44,9 +44,13 @@
     <!-- <a href="/faq">FAQ</a> -->
     <a href="mailto:info-academy@thegovlab.org">Contact Us</a>
     {% if me %}
-    <a href="/profile"><img class="avatar" alt="{{me.name.givenName}}" src="{{me.thumbnailPhotoUrl|default('/assets/silhouette200.png')}}"/></a>
+    <a href="/profile"><img class="avatar" alt="{{me|fullName}}" src="{{me.photoUrl|defaultPicture}}"/></a>
     {% else %}
-    <a href="{{login_url}}">Sign-in</a>
+      {% if invalidUser == True %}
+      <a href="{{logout_url}}">!! Sign-out !!</a>
+      {% else %}
+      <a href="{{login_url}}">Sign-in</a>
+      {% endif %}
     {% endif %}
   </nav>
   

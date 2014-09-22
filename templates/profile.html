@@ -2,7 +2,7 @@
 {% block title %}The GovLab Academy{% endblock %}
 {% block extras_pre %}
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
   {% if readonly == True %}
     <h1>
       {{fname}} {{lname}}'s profile &nbsp;
-      <img class="avatar-x2" alt="{{user.name.givenName}}" src="{{user.thumbnailPhotoUrl|default('assets/silhouette200.png')}}"/>
+      <img class="avatar-x2" alt="{{fname}} {{lname}}" src="{{photoUrl|defaultPicture}}"/>
     </h1>
   {% else %}
   	<h1>My public profile</h1>
@@ -88,6 +88,9 @@
     {% if readonly != True %}
     <div class="b-form-section">
         <button type="submit" class="b-button">Update my profile</button>
+    </div>
+    <div class="b-form-section">
+      <a href="/googleplus">fetch my GooglePlus photo</a>
     </div>
     {% endif %}
     </form>

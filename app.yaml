@@ -1,5 +1,5 @@
-application: govlabacademy
-version: 1dev
+application: govlabacademy2
+version: 1
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -42,7 +42,7 @@ handlers:
   upload: test_group.html
 
 - url: /fall-2014-class
-  script: account_services.app
+  script: main.app
   login: required
 
 - url: /snippet/.*
@@ -61,6 +61,14 @@ handlers:
 
 - url: /canvas
   script: main.app
+  login: required
+
+- url: /googleplus
+  script: googleplus.app
+  login: required
+
+- url: /oauth2callback
+  script: googleplus.app
   login: required
 
 - url: /dashboard
