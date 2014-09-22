@@ -61,6 +61,7 @@ def createNewUser(fname, lname, email, affiliation):
 		return
 	user_profile = UserProfile(id=email, fname=fname, lname=lname, affiliation=affiliation)
 	user_profile.put()
+	return user_profile
 	logging.info("New user %s created." % email)
 
 """ JINJA2 set-up """
@@ -78,6 +79,7 @@ JINJA_ENVIRONMENT.filters['photoUrl'] = lambda x: x.photoUrl
 JINJA_ENVIRONMENT.filters['defaultPicture'] = lambda x: x if x or x!=None else '/assets/silhouette200.png'
 JINJA_ENVIRONMENT.filters['primaryEmail'] = lambda x: x.key.id()
 JINJA_ENVIRONMENT.filters['projectId'] = lambda x: x.key.id()
+JINJA_ENVIRONMENT.filters['projectTitle'] = lambda x: x.title if x.title != '' else "Untitled project"
 
 get_template = JINJA_ENVIRONMENT.get_template
 

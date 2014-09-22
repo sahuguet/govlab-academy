@@ -370,8 +370,18 @@ project.put()
 #createNewUser('Pedro', 'Prieto Martin', 'hcprieto@gmail.com', 'online')
 #project = UserProject(title='crowdsourced civic open data', description='TBD', members=['hcprieto@gmail.com'])
 #project.put()
-old_user = UserProfile.get_by_id('pedro.prieto-martin@kyopol.net')
-new_user = UserProfile.get_by_id('hcprieto@gmail.com')
-new_user.profile = old_user.profile
-new_user.put()
+def migrateUser(old_email, new_email):
+	old_user = UserProfile.get_by_id(old_email)
+	new_user = createNewUser(old_user.fname, old_user.lname, new_email, old_user.affiliation)
+	new_user.profile = old_user.profile
+	new_user.put()
+	old_user.key.delete()
+
+migrateUser('jennifer_groff@mail.harvard.edu', 'jsg943@mail.harvard.edu')
+project = UserProject.get_by_id(6384721483268096)
+project.members = ['jsg943@mail.harvard.edu']
+project.put()
+
+
+
 
