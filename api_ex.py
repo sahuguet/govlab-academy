@@ -377,11 +377,11 @@ def migrateUser(old_email, new_email):
 	new_user.put()
 	old_user.key.delete()
 
-migrateUser('jennifer_groff@mail.harvard.edu', 'jsg943@mail.harvard.edu')
-project = UserProject.get_by_id(6384721483268096)
-project.members = ['jsg943@mail.harvard.edu']
-project.put()
+#migrateUser('jennifer_groff@mail.harvard.edu', 'jsg943@mail.harvard.edu')
+#project = UserProject.get_by_id(6384721483268096)
+#project.members = ['jsg943@mail.harvard.edu']
+#project.put()
 
-
+createNewUser('Luis', 'Daniel', 'luis@thegovlab.org', 'GovLab')
 
 
