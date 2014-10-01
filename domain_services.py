@@ -80,6 +80,7 @@ JINJA_ENVIRONMENT.filters['defaultPicture'] = lambda x: x if x or x!=None else '
 JINJA_ENVIRONMENT.filters['primaryEmail'] = lambda x: x.key.id()
 JINJA_ENVIRONMENT.filters['projectId'] = lambda x: x.key.id()
 JINJA_ENVIRONMENT.filters['projectTitle'] = lambda x: x.title if x.title != '' else "Untitled project"
+JINJA_ENVIRONMENT.filters['asList'] = lambda x: ", ".join(x)
 
 get_template = JINJA_ENVIRONMENT.get_template
 

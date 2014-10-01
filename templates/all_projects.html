@@ -1,28 +1,25 @@
 {% extends "templates/base.html" %}
-{% block title %}The GovLab Academy Fall 2014 Class Projects{% endblock %}
+{% block title %}The GovLab Projects{% endblock %}
 
-{% block extras_post %}
-{%endblock %}
+{% macro projectProfile(project) -%}
+    <li><h3><a href="project/{{project|projectId}}">{{project|projectTitle}}</a></h3>
+    		<p>{{project.description}}</p>
+    		<p>Team: {% for member in project.members %} <a href="/profile?user_email={{member}}">{{member|getProfile|fullName}}</a>{% endfor %}</p>
+    		{% if admin %}
+    		<a href="/removeProject/{{project|projectId}}"><i class="fa fa-trash"></i></a>
+    		{% endif %}
+    </li>
+{%- endmacro %}
 
 {% block content %}
 
 <section class="b-centered b-content">
-	<h1>Class Projects ({{projects|length}})</h1>
-
+	<h2>The GovLab Projects</h2>
 		<ul>
-		{% for project in projects %}
-    	<li>
-    		<h3><a href="project/{{project|projectId}}">{{project|projectTitle}}</a></h3>
-    		<p>{{project.description}}</p>
-    		<p>Team: {% for member in project.members %} <a href="/profile?user_email={{member}}">{{member|getProfile|fullName}}</a> ({{member|getProfile|affiliation}}) {% endfor %}</p>
-<!--
-    		<p><a href="">Team group</a> – <a href="">Team folder</a></p>
-				<p><a href="">Discussion group</a> – <a href="">Public folder</a></p>
--->
-			</li>
+		{% for p in projects %}
+    	{{projectProfile(p)}}
 		{% endfor %}
 		</ul>
-
 </section>
 
 {% endblock %}

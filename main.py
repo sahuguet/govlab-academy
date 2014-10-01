@@ -74,6 +74,7 @@ class UserProfileHandler(webapp2.RequestHandler):
 	def get(self):
 		user = users.get_current_user()
 		my_profile = getUserProfile(user.email())
+		logging.info(user.user_id())
 		user_profile = my_profile
 		readonly = False
 
@@ -127,6 +128,7 @@ class AllProjectsHandler(webapp2.RequestHandler):
 		page_template = get_template('templates/all_projects.html')
 		self.response.out.write(page_template.render({
 			'projects': all_projects,
+			'admin': users.is_current_user_admin(),
 			'me': me }))
 
 class ProjectHandler(webapp2.RequestHandler):
@@ -148,6 +150,7 @@ class ProjectHandler(webapp2.RequestHandler):
 			'project': project,
 			'readonly': readonly,
 			'members': members,
+			'admin': users.is_current_user_admin(),
 			'me': me }))
 
 	def post(self, project_id):
@@ -162,6 +165,8 @@ class ProjectHandler(webapp2.RequestHandler):
 			self.abort(404)
 		project_title = self.request.get('title')
 		project_description = self.request.get('description')
+		if self.request.get('members') != "":
+			project.members = map(lambda x:x.strip(), self.request.get('members').split(','))
 		project.title = project_title
 		project.description = project_description
 		project.blogURL = self.request.get('blogURL')
@@ -207,6 +212,7 @@ class AllUsersHandler(webapp2.RequestHandler):
 			all_users.setdefault(user.affiliation, []).append(user)
 		template_values = {
 		'me': me,
+		'admin': users.is_current_user_admin(),
 		#TODO (arnaud): sort
 		'faculty': all_users.setdefault('GovLab', []),
 		'mit_students': all_users.setdefault('MIT', []),
@@ -214,6 +220,33 @@ class AllUsersHandler(webapp2.RequestHandler):
 		'online_students': all_users.setdefault('online', []) }
 		template = get_template('templates/class_roster.html')
 		self.response.out.write(template.render(template_values))
+
+class RemoveUserHandler(webapp2.RequestHandler):
+	@login_required
+	def get(self, userEmail):
+		if users.is_current_user_admin() == False:
+			self.abort(403)
+		p = UserProject.query(UserProject.members == userEmail).get()
+		if p:
+			p.members.remove(userEmail)
+			p.put()
+			if p.members == []:
+			# If only member, then we remove the project.
+				p.key.delete()
+		u = getUserProfile(userEmail)
+		if u:
+			u.key.delete()
+		self.redirect('/fall-2014-class')
+
+class RemoveProjectHandler(webapp2.RequestHandler):
+	@login_required
+	def get(self, project_id):
+		if users.is_current_user_admin() == False:
+			self.abort(403)
+		p = UserProject.get_by_id(int(project_id))
+		if p:
+			p.key.delete()
+		self.redirect('/projects')
 
 app = webapp2.WSGIApplication([
 	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
@@ -224,4 +257,6 @@ app = webapp2.WSGIApplication([
 	('/projects', AllProjectsHandler),
 	('/canvas', CanvasHandler),
 	('/fall-2014-class', AllUsersHandler),
+	('/removeUser/([^/]+)', RemoveUserHandler),
+	('/removeProject/([^/]+)', RemoveProjectHandler)
 ], debug=True)

@@ -26,6 +26,7 @@ class GooglePlusHandler(webapp2.RequestHandler):
 		user = users.get_current_user()
 		me = user.email()
 		logging.info("Fetching data for user %s." % me)
+		logging.info(user.user_id())
 		if decorator.has_credentials():
 			logging.info('has credentials')
 			service = build('plus', 'v1')

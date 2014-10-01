@@ -17,6 +17,7 @@
     	{% else %}
     	{{user.name.fullName}}
     	{% endif %}
+    	{% if admin %}<a href="/removeUser/{{user|primaryEmail}}"><i class="fa fa-trash"></i></a>{% endif %}
     	</li>
 {%- endmacro %}
 

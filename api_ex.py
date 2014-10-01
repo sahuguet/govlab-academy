@@ -372,6 +372,7 @@ project.put()
 #project.put()
 def migrateUser(old_email, new_email):
 	old_user = UserProfile.get_by_id(old_email)
+	print old_user
 	new_user = createNewUser(old_user.fname, old_user.lname, new_email, old_user.affiliation)
 	new_user.profile = old_user.profile
 	new_user.put()
@@ -382,6 +383,16 @@ def migrateUser(old_email, new_email):
 #project.members = ['jsg943@mail.harvard.edu']
 #project.put()
 
-createNewUser('Luis', 'Daniel', 'luis@thegovlab.org', 'GovLab')
+#createNewUser('Luis', 'Daniel', 'luis@thegovlab.org', 'GovLab')
+#migrateUser('yw1436@stern.nyu.edu', 'yw1436@nyu.edu')
+migrateUser('cheryl.murray@houstonpolice.org', 'themorethemurrier@gmail.com')
 
-
+def removeUser(email):
+	p = UserProject.query(UserProject.members == email).get()
+	p.members.remove('mikael@thegovlab.org')
+	p.put()
+	if p.members == []:
+		# If only member, then we remove the project.
+		p.key.delete()
+	u = UserProfile.query(UserProfile.email == email).get()
+	u.key.delete()

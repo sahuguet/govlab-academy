@@ -23,6 +23,13 @@
     <input type="text" class="form-control b-half" placeholder="Project blog" name="blogURL" value="{{project.blogURL}}">
 </section>
 
+{% if admin %}
+<section class="b-centered b-content">
+  <h1>Team</h1>
+    <input type="text" class="form-control b-half" placeholder="Project Team" name="members" value="{{project.members|asList}}">
+</section>
+{% endif %}
+
 <section class="b-centered b-content">
 <h1>Description</h1>
   <textarea class="form-control" cols="80" rows="4" placeholder="Provide a short description of the project" name="description">{{project.description}}</textarea>
@@ -46,6 +53,7 @@
 </ul>
 </section>
 
+<!--
 <section class="b-centered b-content">
 	<h1>Public</h1>
     <div class="b-half">
@@ -73,6 +81,7 @@
 			</div>
 		</div>
 </section>
+-->
 
 {% endblock %}
 
