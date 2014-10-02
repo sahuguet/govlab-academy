@@ -1,0 +1,23 @@
+{% extends "templates/base.html" %}
+{% block title %}The GovLab Pods{% endblock %}
+
+{% macro podProfile(pod) -%}
+    <li><h3><a href="/pod/{{pod.key.id()}}">{{pod.name}}</a></h3>
+    		<p>{{pod.description}}</p>
+    		<p>Team: {% for member in pod.members %} <a href="/profile?user_email={{member}}">{{member}}</a>{% endfor %}&nbsp; <a target="__new__" href="{{pod.members|mailto}}"><i class="fa fa-paper-plane"></i></a></p>
+            {% if admin %}<a href="/pod/{{pod.key.id()}}/delete"><i class="fa fa-trash"></i></a>{% endif %}
+    </li>
+{%- endmacro %}
+
+{% block content %}
+
+<section class="b-centered b-content">
+	<h2>The GovLab Pods {% if admin %}<a href="/pod/new"><i class="fa fa-plus-square-o"></i></a>{% endif %}</h2>
+		<ul>
+		{% for p in pods %}
+    	{{podProfile(p)}}
+		{% endfor %}
+		</ul>
+</section>
+
+{% endblock %}

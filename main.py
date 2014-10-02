@@ -13,6 +13,8 @@ from google.appengine.api import users
 from model import UserProfile
 from model import UserProject
 from model import ProjectCanvas
+from model import UserPod
+
 import json
 from google.appengine.api import memcache
 
@@ -248,6 +250,67 @@ class RemoveProjectHandler(webapp2.RequestHandler):
 			p.key.delete()
 		self.redirect('/projects')
 
+class PodHandler(webapp2.RequestHandler):
+	@login_required
+	def get(self, pod_id):
+		user = users.get_current_user()
+		me = getUserProfile(user.email())
+		pod = UserPod.get_by_id(int(pod_id))
+		if pod is None:
+			self.abort(404)
+		template = get_template('templates/pod.html')
+		template_values = { 'me': me, 'pod': pod, 'admin': users.is_current_user_admin() }
+		self.response.out.write(template.render(template_values))
+
+	@login_required
+	def post(self, pod_id):
+		pod = UserPod.get_by_id(int(pod_id))
+		if pod is None:
+			self.abort(404)
+		pod.name = self.request.get('name')
+		pod.description = self.request.get('description')
+		pod.members = map(lambda x:x.strip(), self.request.get('members').split(','))
+		pod.put()
+		self.redirect('/pod/%s' % pod.key.id())
+
+class NewPodHandler(webapp2.RequestHandler):
+	@login_required
+	def get(self):
+		user = users.get_current_user()
+		me = getUserProfile(user.email())
+		template = get_template('templates/pod.html')
+		template_values = { 'me': me, 'pod': {} }
+		self.response.out.write(template.render(template_values))
+
+	@login_required
+	def post(self):
+		name = self.request.get('name')
+		description = self.request.get('description')
+		members = map(lambda x:x.strip(), self.request.get('members').split(','))
+		pod = UserPod(name=name, description=description, members=members)
+		pod.put()
+		self.redirect('/pod/%s' % pod.key.id())
+
+class AllPodsHandler(webapp2.RequestHandler):
+	@login_required
+	def get(self):
+		user = users.get_current_user()
+		me = getUserProfile(user.email())
+		pods = UserPod.query().fetch()
+		template = get_template('templates/all_pods.html')
+		template_values = { 'me': me, 'pods': pods, 'admin': users.is_current_user_admin() }
+		self.response.out.write(template.render(template_values))
+
+class DeletePodHandler(webapp2.RequestHandler):
+	@login_required
+	def get(self, pod_id):
+		if users.is_current_user_admin() == False:
+			self.abort(403)
+		pod = UserPod.get_by_id(int(pod_id))
+		if pod:
+			pod.key.delete()
+		self.redirect('/pod/all')
+
 app = webapp2.WSGIApplication([
 	webapp2.Route(r'/<page:(academy|courses|dashboard|faq|gallery|library)?>', MainHandler),
 #	('/invite', InvitationHandler),
@@ -258,5 +321,9 @@ app = webapp2.WSGIApplication([
 	('/canvas', CanvasHandler),
 	('/fall-2014-class', AllUsersHandler),
 	('/removeUser/([^/]+)', RemoveUserHandler),
-	('/removeProject/([^/]+)', RemoveProjectHandler)
+	('/removeProject/([^/]+)', RemoveProjectHandler),
+	('/pod/new', NewPodHandler),
+	('/pod/all', AllPodsHandler),
+	('/pod/([^/]+)/delete', DeletePodHandler),
+	('/pod/(\d+)$', PodHandler)
 ], debug=True)

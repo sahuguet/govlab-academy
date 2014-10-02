@@ -385,7 +385,7 @@ def migrateUser(old_email, new_email):
 
 #createNewUser('Luis', 'Daniel', 'luis@thegovlab.org', 'GovLab')
 #migrateUser('yw1436@stern.nyu.edu', 'yw1436@nyu.edu')
-migrateUser('cheryl.murray@houstonpolice.org', 'themorethemurrier@gmail.com')
+migrateUser('jsg943@mail.harvard.edu', 'jsgroff@gmail.com')
 
 def removeUser(email):
 	p = UserProject.query(UserProject.members == email).get()

@@ -53,3 +53,10 @@ class ProjectCanvas(ndb.Model):
 	@staticmethod
 	def getFields():
 		return [ "canvas_question_%d" % k for k in range(1,21)] + [ "pixar_%d" % k for k in range(1,6) ]
+
+class UserPod(ndb.Model):
+	"""NDB model for a pod, i.e. an interest group"""
+	#shortName = ndb.StringProperty(required=True)
+	name = ndb.StringProperty(required=False)
+	description = ndb.TextProperty(indexed=True, required=True)
+	members = ndb.StringProperty(repeated=True)

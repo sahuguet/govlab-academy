@@ -81,6 +81,7 @@ JINJA_ENVIRONMENT.filters['primaryEmail'] = lambda x: x.key.id()
 JINJA_ENVIRONMENT.filters['projectId'] = lambda x: x.key.id()
 JINJA_ENVIRONMENT.filters['projectTitle'] = lambda x: x.title if x.title != '' else "Untitled project"
 JINJA_ENVIRONMENT.filters['asList'] = lambda x: ", ".join(x)
+JINJA_ENVIRONMENT.filters['mailto'] = lambda x: "mailto:%s" % ",".join(x) if type(x) is list else "#"
 
 get_template = JINJA_ENVIRONMENT.get_template
 

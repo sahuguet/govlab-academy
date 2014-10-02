@@ -1,0 +1,50 @@
+{% extends "templates/base.html" %}
+{% block title %}POD: {{pod.name}}{% endblock %}
+
+{% block extras_pre %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block extras_post %}
+{%endblock %}
+
+{% block content %}
+
+<form action="/pod/{{pod.key.id() if pod.key else 'new'}}" METHOD="POST">
+
+<section class="b-centered b-content">
+	<h1>POD title</h1>
+		<input type="text" class="form-control b-half" placeholder="Pod name" name="name" value="{{pod.name}}">
+</section>
+
+<section class="b-centered b-content">
+<h1>Description</h1>
+  <textarea class="form-control" cols="80" rows="4" placeholder="Provide a short description of the pod" name="description">{{pod.description}}</textarea>
+</section>
+
+<section class="b-centered b-content">
+<h1>Pod Members</h1>
+  <input type="text" class="form-control b-half" placeholder="Pod members" name="members" value="{{pod.members|asList}}">
+</section>
+
+<section class="b-centered b-content">
+  <div class="b-form-section">
+    <button type="submit" class="b-button">Update the pod</button>
+  </div>
+</section>
+
+</form>
+
+
+{% endblock %}
+
+{% block script_post %}
+{% if readonly == True %}
+<script>
+  $(document).ready(function() {
+    $('form :input').attr('disabled', true);
+  });
+</script>
+{% endif %}
+{% endblock %}
