@@ -385,7 +385,7 @@ def migrateUser(old_email, new_email):
 
 #createNewUser('Luis', 'Daniel', 'luis@thegovlab.org', 'GovLab')
 #migrateUser('yw1436@stern.nyu.edu', 'yw1436@nyu.edu')
-migrateUser('jsg943@mail.harvard.edu', 'jsgroff@gmail.com')
+#migrateUser('jsg943@mail.harvard.edu', 'jsgroff@gmail.com')
 
 def removeUser(email):
 	p = UserProject.query(UserProject.members == email).get()
@@ -396,3 +396,35 @@ def removeUser(email):
 		p.key.delete()
 	u = UserProfile.query(UserProfile.email == email).get()
 	u.key.delete()
+
+createNewUser('Lisbeth', 'Salander', 'lisbeth@thegovlab.org', 'NYU')
+dormant_users = """vpereirabr@gmail.com
+gabriella@labplc.mx
+hao-en.kao@asu.edu
+srb489@nyu.edu
+nk1229@nyu.edu
+victoria_alsina@hks.harvard.edu
+m.bani@sssup.it
+dcontrerascaballol@gmail.com
+jessica.a.corbitt@gmail.com
+kimdavis@asu.edu
+victor.farru@bibliotecaspublicas.cl
+asiodmok@hotmail.com
+ed.parkes@nesta.org.uk
+romeroflor@live.com
+simon.woerpel@gmail.com
+mcchris@utexas.edu
+alegomes@gmail.com
+karinne.leissa@seatecnologia.com.br
+soraiasilvamello@gmail.com
+stephen.morrison@houstonpolice.org
+jmh810@nyu.edu""".split('\n')
+
+for userEmail in []:
+	user = UserProfile.get_by_id(userEmail)
+	if user:
+		user.isDormant = True
+		user.put()
+		print "updated user %s" % userEmail
+	else:
+		print "No user user %s" % userEmail

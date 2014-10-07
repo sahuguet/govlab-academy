@@ -9,6 +9,7 @@ class UserProfile(ndb.Model):
 	affiliation = ndb.StringProperty(required=True) # e.g. NYU, MIT, online, govlab.
 	photoUrl = ndb.StringProperty()
 	date = ndb.DateTimeProperty(auto_now_add=True)
+	isDormant = ndb.BooleanProperty(default=False)
 
 	@staticmethod
 	def getFields():

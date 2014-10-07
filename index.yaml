@@ -11,5 +11,6 @@ indexes:
 
 - kind: UserProfile
   properties:
+  - name: isDormant
   - name: lname
   - name: fname

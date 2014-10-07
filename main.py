@@ -64,6 +64,9 @@ class MainHandler(webapp2.RequestHandler):
 			return
  		if user:
 			user_profile = getUserProfile(user.email())
+			if user_profile and user_profile.isDormant:
+				user_profile.isDormant = False
+				user_profile.put()
 			isInvalidUser = invalidUser(user.email())
 		self.response.out.write(page_template.render({
 			'logout_url': users.create_logout_url('/'),
@@ -207,8 +210,11 @@ class AllUsersHandler(webapp2.RequestHandler):
 		me = getUserProfile(user.email())
 		all_profiles = memcache.get('__UserProfile_ALL__')
 		if all_profiles is None:
-			all_profiles = UserProfile.query().order(UserProfile.lname, UserProfile.fname).fetch(limit=500)
+			logging.info("memcache MISS.")
+			all_profiles = UserProfile.query(UserProfile.isDormant == False).order(UserProfile.lname, UserProfile.fname).fetch(limit=500)
 			memcache.add('__UserProfile_ALL__', all_profiles, time=60 * 5)
+		else:
+			logging.info("memcache HIT.")
 		all_users = {}
 		for user in all_profiles:
 			all_users.setdefault(user.affiliation, []).append(user)
@@ -237,7 +243,14 @@ class RemoveUserHandler(webapp2.RequestHandler):
 				p.key.delete()
 		u = getUserProfile(userEmail)
 		if u:
-			u.key.delete()
+			#u.key.delete()
+			u.isDormant = True
+			u.put()
+			logging.info("User %s marked as dormant." % userEmail)
+			memcache.delete('__UserProfile_ALL__')
+		else:
+			logging.error("User %s does not exist." % userEmail)
+			memcache.delete('__UserProfile_ALL__')
 		self.redirect('/fall-2014-class')
 
 class RemoveProjectHandler(webapp2.RequestHandler):

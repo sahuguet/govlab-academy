@@ -14,7 +14,11 @@
     <link rel="stylesheet" href="/css/dashboard.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  
+
     <script type="text/javascript" src="/includes/jquery/jquery-2.1.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script src="/includes/modernizr.js"></script> <!-- Modernizr -->
 
     <script src="/includes/feedback.js"></script>
@@ -111,6 +115,22 @@
     html2canvasURL: '/includes/html2canvas.js'
         });
     </script>
+
+<script>
+  $(function() {
+
+    $('body').append('<div id="confirm_dialog" title="Delete confirmation" style="display:none;"><p>You are about to delete an entity.</p><button id="yes">Are you sure? Yes.</button></div>')
+
+    $('.must_confirm').click(function() {
+      var a_link = $(this);
+      $('#yes').click(function() {
+        window.location.href = window.location.origin + a_link.attr('href');
+      });
+      $( "#confirm_dialog" ).dialog();
+      return false;
+    });
+  });
+  </script>
 
 
 {% block script_post %}{% endblock %}
