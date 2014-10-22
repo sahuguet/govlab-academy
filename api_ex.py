@@ -397,7 +397,7 @@ def removeUser(email):
 	u = UserProfile.query(UserProfile.email == email).get()
 	u.key.delete()
 
-createNewUser('Lisbeth', 'Salander', 'lisbeth@thegovlab.org', 'NYU')
+#createNewUser('Lisbeth', 'Salander', 'lisbeth@thegovlab.org', 'NYU')
 dormant_users = """vpereirabr@gmail.com
 gabriella@labplc.mx
 hao-en.kao@asu.edu
@@ -420,6 +420,7 @@ soraiasilvamello@gmail.com
 stephen.morrison@houstonpolice.org
 jmh810@nyu.edu""".split('\n')
 
+"""
 for userEmail in []:
 	user = UserProfile.get_by_id(userEmail)
 	if user:
@@ -428,3 +429,7 @@ for userEmail in []:
 		print "updated user %s" % userEmail
 	else:
 		print "No user user %s" % userEmail
+
+migrateUser('cpoitrow@gmail.com', 'cpiotrow@gmail.com')
+"""
+print 'hello'
